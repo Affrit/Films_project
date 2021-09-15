@@ -394,6 +394,10 @@ body {
   padding: 0 15px;
 }
 
+.error {
+  color: red;
+}
+
 .header {
   padding: 15px 0;
   background: #DCDCDC;
@@ -509,26 +513,28 @@ body {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  margin: -15px;
+  padding: 15px;
 }
 
 .film {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   width: calc(100% / 3);
   padding: 15px;
   cursor: pointer;
 }
 
 .film__visual {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   position: relative;
   border-radius: 20px;
+  background: #B1B1B1;
   overflow: hidden;
+  width: 100%;
+  min-height: 200px;
 }
 
 .film__visual:before {
@@ -553,8 +559,8 @@ body {
 
 .film__like:before {
   position: absolute;
-  top: 85%;
-  left: 90%;
+  top: 80%;
+  left: 85%;
   content: "\f004";
   font-size: 30px;
   font-family: FontAwesome;
@@ -566,5 +572,31 @@ body {
 .film__like:hover:before {
   color: #a14040;
   text-shadow: #a14040 1px 1px;
+}
+
+.btn-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 30px;
+}
+
+.btn {
+  color: #000000;
+  background: #DCDCDC;
+  border-radius: 40px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.btn:hover {
+  color: #a14040;
+  background: #B1B1B1;
 }
 /*# sourceMappingURL=style.css.map */
