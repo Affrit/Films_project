@@ -1,0 +1,28 @@
+.header {
+    padding: 15px 0;
+    background: $main_color;
+}
+
+.menu-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu {
+    @extend %listreset;
+    display: flex;
+
+    &__item {
+        padding: 10px;
+    }
+
+    &__btn {
+        color: $text_color;
+        transition: all 0.5s;
+
+        &:hover {
+            color: $active_color;
+        }
+    }
+}
