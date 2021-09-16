@@ -1,5 +1,5 @@
 .search {
-    padding: 50px 100px;
+    padding: 30px 100px 0 100px;
 
     &__inner {
         margin-bottom: 20px;
@@ -70,23 +70,57 @@
 .films {
     display: flex;
     flex-wrap: wrap;
-    padding: 15px;
+    padding: 15px 30px;
 }
 
 .film {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: calc(100% / 3);
     padding: 15px;
     cursor: pointer;
 
+    @media (min-width: 768px) {
+        width: 25%;
+    }
+
+    @media (min-width: 1200px) {
+        width: 20%;
+    }
+
     &__visual {
-        display: flex;
         position: relative;
-        border-radius: $base_radius;
+        border-radius: $base_radius $base_radius 0 0;
         background: $card_bg;
         overflow: hidden;
         width: 100%;
-        min-height: 200px;
+        min-height: 100px;
+
+        &:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba(0, 0, 0, 0);
+            transition: all 0.5s;
+        }
+    }
+
+    &__body {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+        padding: 15px;
+        border-radius: 0 0 $base_radius $base_radius;
+        background: $card_bg;
+        width: 100%;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
 
         &:before {
             content: "";
@@ -101,34 +135,45 @@
     }
 
     &__img {
-        height: auto;
+        
+    }
+
+    &__name {
+        display: block;
+        width: 85%;
+    }
+
+    &__like {
+        position: relative;
+        display: block;
+        width: 15%;
+
+        &:before {
+            position: absolute;
+            top: -16px;
+            left: calc(100% - 30px);
+            content: "\f004";
+            font-size: 30px;
+            font-family: FontAwesome;
+            color: $black;
+            transition: all 0.5s;
+        }
+
+        &:hover {
+            &:before {
+                color: $active_color;
+                text-shadow: $active_color 1px 1px;
+            }
+        }
     }
 }
 
 .film:hover {
-    .film__visual:before {
+    .film__visual:before,
+    .film__body:before {
         background: rgba(0, 0, 0, 0.5);
     }
-}
 
-.film__like {
-    &:before {
-        position: absolute;
-        top: 80%;
-        left: 85%;
-        content: "\f004";
-        font-size: 30px;
-        font-family: FontAwesome;
-        color: $black;
-        transition: all 0.5s;
-    }
-
-    &:hover {
-        &:before {
-            color: $active_color;
-            text-shadow: $active_color 1px 1px;
-        }
-    }
 }
 
 .btn-wrap {
