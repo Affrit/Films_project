@@ -43,7 +43,7 @@
                     </div>
                     <div class="search__params">
                         <select id="genreSelect" class="search__select" name="">
-                            <option selected disabled hidden>genre</option>
+                            <option selected value="">All genre</option>
                             <option value="Drama">Drama</option>
                             <option value="Horror">Horror</option>
                             <option value="Thriller">Thriller</option>
@@ -58,7 +58,7 @@
                             <option value="Medical">Medical</option>
                         </select>
                         <select id="langSelect" class="search__select" name="">
-                            <option selected disabled hidden>lang</option>
+                            <option value="">All language</option>
                             <option value="English">English</option>
                             <option value="Japanese">Japanese</option>
                         </select>
@@ -67,7 +67,9 @@
 
             </div>
 
-
+            <div class="count-of-films">
+                <span id="countOfFoundFilms" class="count-of-films__value">0</span>
+            </div>
             <div id="filmsContainer" class="films"></div>
 
             <div class="btn-wrap">

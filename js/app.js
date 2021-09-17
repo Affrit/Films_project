@@ -5,9 +5,11 @@ const searchBtn = document.getElementById('searchBtn')
 const genreSelect = document.getElementById('genreSelect')
 const langSelect = document.getElementById('langSelect')
 const filmsContainer = document.getElementById('filmsContainer')
+const countOfFoundFilms = document.getElementById('countOfFoundFilms')
 const loadMoreBtn = document.getElementById('loadMoreBtn')
 
-let filmList = []
+let commonFilmList = []
+let filtredFilmList = []
 let maxCountOnPage = 14
 let wasSpawnedOnPage = 0
 
@@ -36,14 +38,14 @@ const showError = (error, targetBlock) => {
 
 // ======= FILMS ==============================
 
+const spawnCountOfFilms = (filmList) => {
+    countOfFoundFilms.innerText = `${filmList.length} films was found`
+}
+
 const spawnFilms = (filmList, maxCount) => {
-    // if you want more than server have to you
+    // if user want to display on page more than filmList includes, user will see rest of filmList
     if (wasSpawnedOnPage + maxCount > filmList.length) {
         maxCount = filmList.length - 1 - wasSpawnedOnPage
-    }
-
-    if (filmList.length === 0) {
-        showError('Not found', filmsContainer)
     }
 
     for (let i = 0; i <= maxCount; i++) {
@@ -94,16 +96,12 @@ async function showContent() {
             showError('Empty :-(', filmsContainer)
             return
         }
-        filmList = response
-        console.log(filmList)
+        commonFilmList = response
+        filtredFilmList = [...commonFilmList]
 
-        for (let film of filmList) {
-            if (film.language != 'English') {
-                console.log(film.language)
-            }
-        }
-
-        spawnFilms(filmList, maxCountOnPage)
+        console.log(filtredFilmList)
+        spawnCountOfFilms(filtredFilmList)
+        spawnFilms(filtredFilmList, maxCountOnPage)
 
     } catch (error) {
         showError(error, filmsContainer)
@@ -160,8 +158,9 @@ const onSearch = () => {
     wasSpawnedOnPage = 0
     filtrationOptions.searchWord = searchInput.value
 
-    const filtredFilms = getfiltredFilms(filtrationOptions, filmList)
-    spawnFilms(filtredFilms, maxCountOnPage)
+    filtredFilmList = getfiltredFilms(filtrationOptions, commonFilmList)
+    spawnCountOfFilms(filtredFilmList)
+    spawnFilms(filtredFilmList, maxCountOnPage)
     console.log(filtrationOptions)
 }
 
@@ -177,7 +176,7 @@ genreSelect.addEventListener('change', onChooseGenre)
 langSelect.addEventListener('change', onChooseLang)
 
 const onLoadMore = () => {
-    spawnFilms(filmList, maxCountOnPage)
+    spawnFilms(filtredFilmList, maxCountOnPage)
 }
 
 loadMoreBtn.addEventListener('click', onLoadMore)

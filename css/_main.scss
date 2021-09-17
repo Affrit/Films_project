@@ -1,5 +1,5 @@
 .search {
-    padding: 30px 100px 0 100px;
+    padding: 30px 100px 15px 100px;
 
     &__inner {
         margin-bottom: 20px;
@@ -195,4 +195,11 @@
         color: $active_color;
         background: $card_bg;
     }
+}
+
+.count-of-films {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding-top: 15px;
 }

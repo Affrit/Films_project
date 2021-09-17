@@ -436,7 +436,7 @@ body {
 }
 
 .search {
-  padding: 30px 100px 0 100px;
+  padding: 30px 100px 15px 100px;
 }
 
 .search__inner {
@@ -656,5 +656,16 @@ body {
 .btn:hover {
   color: #a14040;
   background: #B1B1B1;
+}
+
+.count-of-films {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  padding-top: 15px;
 }
 /*# sourceMappingURL=style.css.map */
