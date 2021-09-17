@@ -143,7 +143,8 @@
         width: 85%;
     }
 
-    &__like {
+    &__like,
+    &__liked {
         position: relative;
         display: block;
         width: 15%;
@@ -163,6 +164,19 @@
             &:before {
                 color: $active_color;
                 text-shadow: $active_color 1px 1px;
+            }
+        }
+    }
+
+    &__liked {
+        &:before {
+            color: $red;
+        }
+
+        &:hover {
+            &:before {
+                color: $black;
+                text-shadow: $black 1px 1px;
             }
         }
     }

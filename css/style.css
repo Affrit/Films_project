@@ -604,13 +604,13 @@ body {
   width: 85%;
 }
 
-.film__like {
+.film__like, .film__liked {
   position: relative;
   display: block;
   width: 15%;
 }
 
-.film__like:before {
+.film__like:before, .film__liked:before {
   position: absolute;
   top: -16px;
   left: calc(100% - 30px);
@@ -622,9 +622,18 @@ body {
   transition: all 0.5s;
 }
 
-.film__like:hover:before {
+.film__like:hover:before, .film__liked:hover:before {
   color: #a14040;
   text-shadow: #a14040 1px 1px;
+}
+
+.film__liked:before {
+  color: #ff0000;
+}
+
+.film__liked:hover:before {
+  color: #000000;
+  text-shadow: #000000 1px 1px;
 }
 
 .film:hover .film__visual:before,
