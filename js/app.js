@@ -1,4 +1,11 @@
+import { clearContainer, createElement, showError } from './utils.js'
+import { variables } from "./variables.js"
+
 const BASE_URL = 'https://api.tvmaze.com/'
+
+let {commonFilmList, filtredFilmList,
+    filmsOnPageNow, favoriteFilmList,
+    maxCountOnPage, wasSpawnedOnPage} = variables 
 
 const favorite = document.getElementById('favorite') // temp
 const films = document.getElementById('films') // temp
@@ -11,35 +18,10 @@ const filmsContainer = document.getElementById('filmsContainer')
 const countOfFoundFilms = document.getElementById('countOfFoundFilms')
 const loadMoreBtn = document.getElementById('loadMoreBtn')
 
-let commonFilmList = [] // all films from server
-let filtredFilmList = []
-let filmsOnPageNow = [] // films that display on page now
-let favoriteFilmList = JSON.parse(localStorage.getItem('favoriteFilms')) // favorite list
-
-let maxCountOnPage = 14
-let wasSpawnedOnPage = 0
-
 const filtrationOptions = {
     searchWord: '',
     genre: '',
     lang: '',
-}
-
-const clearContainer = targetBlock => {
-    targetBlock.innerHTML = ''
-}
-
-const createElement = (elementType, attributeType, attributeValue) => {
-    const element = document.createElement(elementType)
-    element.setAttribute(attributeType, attributeValue)
-    return element
-}
-
-const showError = (error, targetBlock) => {
-    const errorText = createElement('span', 'class', 'error')
-    errorText.innerText = `${error} :-(`
-    targetBlock.append(errorText)
-    console.log(error)
 }
 
 // ======= FILMS ==============================
@@ -259,3 +241,46 @@ const renderFavorites = () => {
 }
 
 favorite.addEventListener('click', renderFavorites)
+
+
+
+
+// ================= ROUTES =========================
+
+const routes = {
+    FILMS: 'films',
+    FAVORITE: 'favorite',
+    ABOUT: 'about',
+    CONTACTS: 'contacts'
+}
+
+const getURL = () => {
+    return window.location.hash.slice(1)
+}
+
+const renderRoute = () => {
+    const route = getURL()
+    switch (route) {
+        case routes.FILMS:
+            console.log('renderFilms')
+            break;
+
+        case routes.FAVORITE:
+            console.log('renderFavorite')
+            break;
+
+        case routes.ABOUT:
+            console.log('renderAbout')
+            break;
+
+        case routes.CONTACTS:
+            console.log('renderContacts')
+            break;
+
+        default:
+            console.log('404')
+            break;
+    }
+}
+
+window.addEventListener("hashchange", renderRoute)
