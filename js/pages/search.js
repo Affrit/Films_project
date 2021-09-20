@@ -1,7 +1,8 @@
 import { createElement } from "../utils.js"
 import { variables } from "../variables.js"
+import { renderFilms } from './films.js'
 
-//const main = document.getElementById('main')
+const main = document.getElementById('main')
 
 const getfiltredFilms = (filtrationOptions, filmList) => {
     const { searchWord, genre, lang } = filtrationOptions
@@ -32,33 +33,27 @@ const getfiltredFilms = (filtrationOptions, filmList) => {
     return filtredFilms
 }
 
-const filtrationOptions = {
-    searchWord: '',
-    genre: '',
-    lang: '',
-}
-
 const onChooseGenre = ({ target }) => {
-    filtrationOptions.genre = target.value
+    variables.filtrationOptions.genre = target.value
 }
 
 const onChooseLang = ({ target }) => {
-    filtrationOptions.lang = target.value
+    variables.filtrationOptions.lang = target.value
 }
 
 const onSearch = () => {
-    clearContainer(filmsContainer)
+    const searchInput = document.getElementById('searchInput')
     variables.filmsOnPageNow = []
     variables.wasSpawnedOnPage = 0
-    filtrationOptions.searchWord = searchInput.value
+    variables.filtrationOptions.searchWord = searchInput.value
 
-    variables.filtredFilmList = getfiltredFilms(filtrationOptions, variables.commonFilmList)
-    spawnCountOfFilms(variables.filtredFilmList)
+    variables.filtredFilmList = getfiltredFilms(variables.filtrationOptions, variables.commonFilmList)
     renderFilms()
 }
 
 const onEnter = (e) => {
     if (e.keyCode === 13) {
+        console.log('onEnter')
         onSearch()
     }
 }
@@ -68,6 +63,9 @@ export const renderSearch = () => {
     const searchNode = createElement('div', 'class', 'search')
     const search__innerNode = createElement('div', 'class', 'search__inner')
     const search__inputNode = createElement('input', 'class', 'search__input')
+    search__inputNode.setAttribute('id', 'searchInput')
+    search__inputNode.setAttribute('placeholder', 'insert film name here')
+    search__inputNode.value = variables.filtrationOptions.searchWord
     const search__btnNode = createElement('button', 'class', 'search__btn')
     search__btnNode.innerText = 'SEEEERCH'
     search__innerNode.append(search__inputNode)
@@ -103,6 +101,14 @@ export const renderSearch = () => {
     const optionNode13 = createElement('option', 'value', 'Medical')
     optionNode13.innerText = 'Medical'
 
+    if (variables.filtrationOptions.genre) {
+        const optionNodeWasSelected = createElement('option', 'value', variables.filtrationOptions.genre)
+        optionNodeWasSelected.innerText = variables.filtrationOptions.genre
+        optionNodeWasSelected.setAttribute('selected', 'true')
+        optionNodeWasSelected.setAttribute('hidden', 'true')
+        searchGenreNode.append(optionNodeWasSelected)
+    }
+
     searchGenreNode.append(optionNode1)
     searchGenreNode.append(optionNode2)
     searchGenreNode.append(optionNode3)
@@ -126,6 +132,14 @@ export const renderSearch = () => {
     const optionNode16 = createElement('option', 'value', 'Japanese')
     optionNode16.innerText = 'Japanese'
 
+    if (variables.filtrationOptions.lang) {
+        const optionNodeWasSelected = createElement('option', 'value', variables.filtrationOptions.lang)
+        optionNodeWasSelected.innerText = variables.filtrationOptions.lang
+        optionNodeWasSelected.setAttribute('selected', 'true')
+        optionNodeWasSelected.setAttribute('hidden', 'true')
+        searchLangNode.append(optionNodeWasSelected)
+    }
+
     searchLangNode.append(optionNode14)
     searchLangNode.append(optionNode15)
     searchLangNode.append(optionNode16)
@@ -142,4 +156,6 @@ export const renderSearch = () => {
     search__btnNode.addEventListener('click', onSearch)
     searchGenreNode.addEventListener('change', onChooseGenre)
     searchLangNode.addEventListener('change', onChooseLang)
+
+    console.log(searchGenreNode)
 }

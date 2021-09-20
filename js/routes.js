@@ -1,11 +1,13 @@
 import renderFavorite from './pages/favorite.js'
-import { renderFilms, renderCountOfFilms, renderLoadMore} from './pages/films.js'
+import { renderFilms } from './pages/films.js'
 import { renderSearch } from './pages/search.js'
 import { clearContainer } from './utils.js'
 import { renderAbout } from './pages/about.js'
 import { renderContacts } from './pages/contacts.js'
+import { renderPage404 } from './pages/page404.js'
 
 const routes = {
+    DEFAULT: '',
     FILMS: 'films',
     FAVORITE: 'favorite',
     ABOUT: 'about',
@@ -16,38 +18,36 @@ const getURL = () => {
     return window.location.hash.slice(1)
 }
 
-const renderRoute = () => {
+export const renderRoute = () => {
     const route = getURL()
+    clearContainer(main)
+    clearContainer(root)
     switch (route) {
-        case routes.FILMS:
-            console.log('renderFilms')
-            clearContainer(main)
+        case routes.DEFAULT:
             renderSearch()
-            renderCountOfFilms()
             renderFilms()
-            renderLoadMore()
-            break;
+            break
+
+        case routes.FILMS:
+            renderSearch()
+            renderFilms()
+            break
 
         case routes.FAVORITE:
-            console.log('renderFavorite')
             renderFavorite()
-            break;
+            break
 
         case routes.ABOUT:
-            console.log('renderAbout')
-            clearContainer(main)
             renderAbout()
-            break;
+            break
 
         case routes.CONTACTS:
-            console.log('renderContacts')
-            clearContainer(main)
             renderContacts()
-            break;
+            break
 
         default:
-            console.log('404')
-            break;
+            renderPage404()
+            break
     }
 }
 

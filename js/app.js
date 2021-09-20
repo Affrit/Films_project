@@ -1,7 +1,6 @@
 import { showError } from './utils.js'
 import { variables } from './variables.js'
-import { renderFilms, renderCountOfFilms, renderLoadMore } from './pages/films.js'
-import { renderSearch } from './pages/search.js'
+import { renderRoute } from './routes.js'
 
 const BASE_URL = 'https://api.tvmaze.com/'
 
@@ -35,10 +34,7 @@ async function showContent() {
         }
         variables.commonFilmList = [...response]
         variables.filtredFilmList = [...variables.commonFilmList]
-        renderSearch()
-        renderCountOfFilms()
-        renderFilms()
-        renderLoadMore()
+        renderRoute()
 
     } catch (error) {
         showError(error, filmsContainer)

@@ -7,4 +7,9 @@ export const variables = {
     favoriteFilmList: favoriteFilmList,
     maxCountOnPage: 14,
     wasSpawnedOnPage: 0,
+    filtrationOptions: {
+        searchWord: '',
+        genre: '',
+        lang: '',
+    }
 }

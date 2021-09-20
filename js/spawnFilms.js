@@ -35,5 +35,6 @@ export const spawnFilms = (filmList, targetBlock, maxCount = 3) => {
         variables.filmsOnPageNow.push(filmItem)
     }
 
+    console.log(variables.filmsOnPageNow)
     variables.wasSpawnedOnPage += maxCount + 1
 }
