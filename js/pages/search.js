@@ -4,6 +4,12 @@ import { renderFilms } from './films.js'
 
 const main = document.getElementById('main')
 
+const genreList = ['Drama', 'Horror', 'Thriller', 'Science-Fiction',
+                   'Action', 'Crime', 'Music', 'Mystery',
+                   'Supernatural', 'Adventure', 'Family', 'Medical']
+
+const langList = ['English', 'Japanese']
+
 const getfiltredFilms = (filtrationOptions, filmList) => {
     const { searchWord, genre, lang } = filtrationOptions
     let filtredFilms = []
@@ -58,6 +64,31 @@ const onEnter = (e) => {
     }
 }
 
+const spawnSelectNode = optionsList => {
+    const selectNode = createElement('select', 'class', 'search__select')
+    const defaultOptionNode = createElement('option', 'value', '')
+    defaultOptionNode.innerText = 'All genre'
+    selectNode.append(defaultOptionNode)
+    
+    for (const option of optionsList) {
+        const optionNode = createElement('option', 'value', option)
+        optionNode.innerText = option
+        selectNode.append(optionNode)
+    }
+
+    return selectNode
+}
+
+const savedOptions = (selectNode, option) => {
+    if (option) {
+        const optionNodeWasSelected = createElement('option', 'value', option)
+        optionNodeWasSelected.innerText = option
+        optionNodeWasSelected.setAttribute('selected', 'true')
+        optionNodeWasSelected.setAttribute('hidden', 'true')
+        selectNode.append(optionNodeWasSelected)
+    }
+}
+
 export const renderSearch = () => {
     const containerNode = createElement('div', 'class', 'container')
     const searchNode = createElement('div', 'class', 'search')
@@ -67,82 +98,16 @@ export const renderSearch = () => {
     search__inputNode.setAttribute('placeholder', 'insert film name here')
     search__inputNode.value = variables.filtrationOptions.searchWord
     const search__btnNode = createElement('button', 'class', 'search__btn')
-    search__btnNode.innerText = 'SEEEERCH'
+    search__btnNode.innerText = 'Search'
     search__innerNode.append(search__inputNode)
     search__innerNode.append(search__btnNode)
 
     const search__paramsNode = createElement('div', 'class', 'search__params')
-    const searchGenreNode = createElement('select', 'class', 'search__select')
+    const searchGenreNode = spawnSelectNode(genreList)
+    savedOptions(searchGenreNode, variables.filtrationOptions.genre)
 
-    const optionNode1 = createElement('option', 'value', '')
-    optionNode1.innerText = 'All genre'
-    const optionNode2 = createElement('option', 'value', 'Drama')
-    optionNode2.innerText = 'Drama'
-    const optionNode3 = createElement('option', 'value', 'Horror')
-    optionNode3.innerText = 'Horror'
-    const optionNode4 = createElement('option', 'value', 'Thriller')
-    optionNode4.innerText = 'Thriller'
-    const optionNode5 = createElement('option', 'value', 'Science-Fiction')
-    optionNode5.innerText = 'Science-Fiction'
-    const optionNode6 = createElement('option', 'value', 'Action')
-    optionNode6.innerText = 'Action'
-    const optionNode7 = createElement('option', 'value', 'Crime')
-    optionNode7.innerText = 'Crime'
-    const optionNode8 = createElement('option', 'value', 'Music')
-    optionNode8.innerText = 'Music'
-    const optionNode9 = createElement('option', 'value', 'Mystery')
-    optionNode9.innerText = 'Mystery'
-    const optionNode10 = createElement('option', 'value', 'Supernatural')
-    optionNode10.innerText = 'Supernatural'
-    const optionNode11 = createElement('option', 'value', 'Adventure')
-    optionNode11.innerText = 'Adventure'
-    const optionNode12 = createElement('option', 'value', 'Family')
-    optionNode12.innerText = 'Family'
-    const optionNode13 = createElement('option', 'value', 'Medical')
-    optionNode13.innerText = 'Medical'
-
-    if (variables.filtrationOptions.genre) {
-        const optionNodeWasSelected = createElement('option', 'value', variables.filtrationOptions.genre)
-        optionNodeWasSelected.innerText = variables.filtrationOptions.genre
-        optionNodeWasSelected.setAttribute('selected', 'true')
-        optionNodeWasSelected.setAttribute('hidden', 'true')
-        searchGenreNode.append(optionNodeWasSelected)
-    }
-
-    searchGenreNode.append(optionNode1)
-    searchGenreNode.append(optionNode2)
-    searchGenreNode.append(optionNode3)
-    searchGenreNode.append(optionNode4)
-    searchGenreNode.append(optionNode5)
-    searchGenreNode.append(optionNode6)
-    searchGenreNode.append(optionNode7)
-    searchGenreNode.append(optionNode8)
-    searchGenreNode.append(optionNode9)
-    searchGenreNode.append(optionNode10)
-    searchGenreNode.append(optionNode11)
-    searchGenreNode.append(optionNode12)
-    searchGenreNode.append(optionNode13)
-
-    const searchLangNode = createElement('select', 'class', 'search__select')
-
-    const optionNode14 = createElement('option', 'value', '')
-    optionNode14.innerText = 'All language'
-    const optionNode15 = createElement('option', 'value', 'English')
-    optionNode15.innerText = 'English'
-    const optionNode16 = createElement('option', 'value', 'Japanese')
-    optionNode16.innerText = 'Japanese'
-
-    if (variables.filtrationOptions.lang) {
-        const optionNodeWasSelected = createElement('option', 'value', variables.filtrationOptions.lang)
-        optionNodeWasSelected.innerText = variables.filtrationOptions.lang
-        optionNodeWasSelected.setAttribute('selected', 'true')
-        optionNodeWasSelected.setAttribute('hidden', 'true')
-        searchLangNode.append(optionNodeWasSelected)
-    }
-
-    searchLangNode.append(optionNode14)
-    searchLangNode.append(optionNode15)
-    searchLangNode.append(optionNode16)
+    const searchLangNode = spawnSelectNode(langList)
+    savedOptions(searchLangNode, variables.filtrationOptions.lang)
 
     search__paramsNode.append(searchGenreNode)
     search__paramsNode.append(searchLangNode)
@@ -156,6 +121,4 @@ export const renderSearch = () => {
     search__btnNode.addEventListener('click', onSearch)
     searchGenreNode.addEventListener('change', onChooseGenre)
     searchLangNode.addEventListener('change', onChooseLang)
-
-    console.log(searchGenreNode)
 }
