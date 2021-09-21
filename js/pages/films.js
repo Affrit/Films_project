@@ -8,7 +8,13 @@ const root = document.getElementById('root')
 
 const onFilmPushed = (event) => {
     if (event.target.nodeName === 'A') return
-    const filmId = +event.path[1].id
+    if (event.target.id === 'filmsContainer') return
+    console.log(event)
+    const oldFilmModal = document.getElementById('filmModal')
+    if (oldFilmModal) {
+        oldFilmModal.remove()
+    }
+    const filmId = +event.path[1].id || +event.path[0].id 
     const pushedFilm = variables.filmsOnPageNow.find(film => film.id === filmId)
     const filmModal = spawnFilmModalWindow(pushedFilm)
     root.append(filmModal)
