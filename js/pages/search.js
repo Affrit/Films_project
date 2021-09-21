@@ -59,15 +59,14 @@ const onSearch = () => {
 
 const onEnter = (e) => {
     if (e.keyCode === 13) {
-        console.log('onEnter')
         onSearch()
     }
 }
 
-const spawnSelectNode = optionsList => {
+const spawnSelectNode = (optionsList, optionsName) => {
     const selectNode = createElement('select', 'class', 'search__select')
     const defaultOptionNode = createElement('option', 'value', '')
-    defaultOptionNode.innerText = 'All genre'
+    defaultOptionNode.innerText = `All ${optionsName}`
     selectNode.append(defaultOptionNode)
     
     for (const option of optionsList) {
@@ -103,10 +102,10 @@ export const renderSearch = () => {
     search__innerNode.append(search__btnNode)
 
     const search__paramsNode = createElement('div', 'class', 'search__params')
-    const searchGenreNode = spawnSelectNode(genreList)
+    const searchGenreNode = spawnSelectNode(genreList, 'genre')
     savedOptions(searchGenreNode, variables.filtrationOptions.genre)
 
-    const searchLangNode = spawnSelectNode(langList)
+    const searchLangNode = spawnSelectNode(langList, 'lang')
     savedOptions(searchLangNode, variables.filtrationOptions.lang)
 
     search__paramsNode.append(searchGenreNode)
