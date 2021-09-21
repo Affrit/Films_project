@@ -6,6 +6,9 @@ import { renderAbout } from './pages/about.js'
 import { renderContacts } from './pages/contacts.js'
 import { renderPage404 } from './pages/page404.js'
 
+const main = document.getElementById('main')
+const root = document.getElementById('root')
+
 const routes = {
     DEFAULT: '',
     FILMS: 'films',
@@ -24,29 +27,29 @@ export const renderRoute = () => {
     clearContainer(root)
     switch (route) {
         case routes.DEFAULT:
-            renderSearch()
+            renderSearch(main)
             renderFilms()
             break
 
         case routes.FILMS:
-            renderSearch()
+            renderSearch(main)
             renderFilms()
             break
 
         case routes.FAVORITE:
-            renderFavorite()
+            renderFavorite(main)
             break
 
         case routes.ABOUT:
-            renderAbout()
+            renderAbout(main)
             break
 
         case routes.CONTACTS:
-            renderContacts()
+            renderContacts(main)
             break
 
         default:
-            renderPage404()
+            renderPage404(main)
             break
     }
 }

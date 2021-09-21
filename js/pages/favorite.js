@@ -3,14 +3,14 @@ import { onFilmLikeBtnPushed } from '../app.js'
 import { variables } from "../variables.js"
 import { spawnFilms } from "../spawnFilms.js"
 
-const renderFavorite = () => {
+const renderFavorite = (targetNode) => {
     variables.wasSpawnedOnPage = 0
     variables.filmsOnPageNow = []
 
     const filmsContainer = createElement('div', 'class', `films`)
     filmsContainer.setAttribute('id', 'filmsContainer')
     spawnFilms(variables.favoriteFilmList, filmsContainer, variables.maxCountOnPage)
-    main.append(filmsContainer)
+    targetNode.append(filmsContainer)
 
     filmsContainer.addEventListener('click', onFilmLikeBtnPushed)
 }

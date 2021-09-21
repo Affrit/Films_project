@@ -5,10 +5,7 @@ import { renderRoute } from './routes.js'
 const BASE_URL = 'https://api.tvmaze.com/'
 
 const filmsContainer = document.getElementById('filmsContainer')
-const countOfFoundFilms = document.getElementById('countOfFoundFilms')
-const loadMoreBtn = document.getElementById('loadMoreBtn')
 
-// ======= FILMS ==============================
 async function getDataFromServer() {
     try {
         const dataFromServer = await fetch(`${BASE_URL}shows`)
@@ -42,8 +39,6 @@ async function showContent() {
 }
 
 showContent()
-
-// ========= Events ==========================================
 
 export const onFilmLikeBtnPushed = (event) => {
     if (event.target.nodeName === 'A') {

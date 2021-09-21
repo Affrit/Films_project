@@ -2,8 +2,6 @@ import { createElement } from "../utils.js"
 import { variables } from "../variables.js"
 import { renderFilms } from './films.js'
 
-const main = document.getElementById('main')
-
 const genreList = ['Drama', 'Horror', 'Thriller', 'Science-Fiction',
                    'Action', 'Crime', 'Music', 'Mystery',
                    'Supernatural', 'Adventure', 'Family', 'Medical']
@@ -88,7 +86,7 @@ const savedOptions = (selectNode, option) => {
     }
 }
 
-export const renderSearch = () => {
+export const renderSearch = (targetNode) => {
     const containerNode = createElement('div', 'class', 'container')
     const searchNode = createElement('div', 'class', 'search')
     const search__innerNode = createElement('div', 'class', 'search__inner')
@@ -114,7 +112,7 @@ export const renderSearch = () => {
     searchNode.append(search__innerNode)
     searchNode.append(search__paramsNode)
     containerNode.append(searchNode)
-    main.append(containerNode)
+    targetNode.append(containerNode)
 
     search__inputNode.addEventListener('keydown', onEnter)
     search__btnNode.addEventListener('click', onSearch)
