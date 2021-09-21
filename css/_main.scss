@@ -217,3 +217,85 @@
     text-align: center;
     padding-top: 15px;
 }
+
+//============ Modal Window ==================
+.filmModal {
+    display: flex;
+    border-radius: $base_radius;
+    box-shadow: 2px 2px 5px 5px #efefef;
+    overflow: hidden;
+    transition: all 1s;
+    width: 50%;
+    position: absolute;
+    top: 10%;
+    background: $main_color;
+    
+    &:hover {
+        text-shadow: 1px 1px 5px $main_color;
+    }
+
+    &__visual {
+        position: relative;
+        width: 45%;
+        padding-top: 63%;
+    }
+
+    &__img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        max-width: none;
+        object-fit: cover;
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        width: 55%;
+        padding: 20px;
+        font-size: 16px;
+        color: $text_color;
+        position: relative;
+    }
+
+    &__name {
+        text-transform: uppercase;
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 30px;
+    }
+
+    &__info {
+        padding: 5px 0;
+    }
+
+    &__closeBtn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+
+        &:before {
+            content: '\f00d';
+            font-family: FontAwesome;
+            font-size: 30px;
+            color: $black;
+            transition: all 0.5s;
+        }
+
+        &:hover {
+            &:before {
+                color: $active_color;
+            }
+        }
+    }
+}
+
+.filmModal_hide {
+    display: none;
+}
+

@@ -2,8 +2,19 @@ import { createElement, clearContainer } from "../utils.js"
 import { onFilmLikeBtnPushed } from '../app.js'
 import { variables } from "../variables.js"
 import { spawnFilms } from "../spawnFilms.js"
+import { spawnFilmModalWindow } from './filmModalWindow.js'
 
 const root = document.getElementById('root')
+
+const onFilmPushed = (event) => {
+    if (event.target.nodeName === 'A') return
+    const filmId = +event.path[1].id
+    const pushedFilm = variables.filmsOnPageNow.find(film => film.id === filmId)
+    const filmModal = spawnFilmModalWindow(pushedFilm)
+    root.append(filmModal)
+    //filmModal.setAttribute('class', 'filmModal')
+    //clearContainer(filmModal)
+}
 
 export const renderCountOfFilms = () => {
     const countOfFilms = createElement('div', 'class', 'count-of-films')
@@ -26,6 +37,7 @@ export const renderFilms = () => {
     renderLoadMore()
 
     filmsContainer.addEventListener('click', onFilmLikeBtnPushed)
+    filmsContainer.addEventListener('click', onFilmPushed)
 }
 
 const onLoadMore = () => {

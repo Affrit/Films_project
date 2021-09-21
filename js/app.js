@@ -32,7 +32,7 @@ async function showContent() {
         variables.commonFilmList = [...response]
         variables.filtredFilmList = [...variables.commonFilmList]
         renderRoute()
-
+        console.log(response)
     } catch (error) {
         showError(error, filmsContainer)
     }

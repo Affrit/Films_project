@@ -677,4 +677,93 @@ body {
   text-align: center;
   padding-top: 15px;
 }
+
+.filmModal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 20px;
+  -webkit-box-shadow: 2px 2px 5px 5px #efefef;
+          box-shadow: 2px 2px 5px 5px #efefef;
+  overflow: hidden;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+  width: 50%;
+  position: absolute;
+  top: 10%;
+  background: #DCDCDC;
+}
+
+.filmModal:hover {
+  text-shadow: 1px 1px 5px #DCDCDC;
+}
+
+.filmModal__visual {
+  position: relative;
+  width: 45%;
+  padding-top: 63%;
+}
+
+.filmModal__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.filmModal__body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 55%;
+  padding: 20px;
+  font-size: 16px;
+  color: #000000;
+  position: relative;
+}
+
+.filmModal__name {
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.filmModal__info {
+  padding: 5px 0;
+}
+
+.filmModal__closeBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.filmModal__closeBtn:before {
+  content: '\f00d';
+  font-family: FontAwesome;
+  font-size: 30px;
+  color: #000000;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.filmModal__closeBtn:hover:before {
+  color: #a14040;
+}
+
+.filmModal_hide {
+  display: none;
+}
 /*# sourceMappingURL=style.css.map */
