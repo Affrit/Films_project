@@ -678,7 +678,8 @@ body {
   padding-top: 15px;
 }
 
-.filmModal-wrap {
+.filmModal-wrap_show,
+.filmModal-wrap_hide {
   position: fixed;
   overflow: hidden;
   left: 0;
@@ -686,6 +687,14 @@ body {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.filmModal-wrap_hide {
+  background-color: rgba(0, 0, 0, 0);
+  -webkit-transform: scale(0);
+          transform: scale(0);
 }
 
 .filmModal {
@@ -696,8 +705,6 @@ body {
   -webkit-box-shadow: 1px 1px 3px 3px #efefef;
           box-shadow: 1px 1px 3px 3px #efefef;
   overflow: hidden;
-  -webkit-transition: all 1s;
-  transition: all 1s;
   width: 50%;
   position: absolute;
   left: 50%;
@@ -705,6 +712,8 @@ body {
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   background: #DCDCDC;
+  -webkit-transition: all 1s;
+  transition: all 1s;
 }
 
 .filmModal__visual {

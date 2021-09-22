@@ -2,7 +2,8 @@ import { createElement } from "../utils.js"
 
 const onCloseBtnClicked = () => {
     const filmModal = document.getElementById('filmModal')
-    filmModal.remove()
+    filmModal.setAttribute('class', 'filmModal-wrap_hide')
+    setTimeout(() => filmModal.remove(), 500)
 }
 
 export const spawnFilmModalWindow = (item) => {
@@ -15,7 +16,7 @@ export const spawnFilmModalWindow = (item) => {
     const summary = item.summary
     const rating = item.rating.average
 
-    const filmModalWrap = createElement('div', 'class', 'filmModal-wrap')
+    const filmModalWrap = createElement('div', 'class', 'filmModal-wrap_hide')
     const filmModal = createElement('div', 'class', 'filmModal')
     filmModalWrap.setAttribute('id', 'filmModal')
     const visual = createElement('div', 'class', 'filmModal__visual')
@@ -53,6 +54,16 @@ export const spawnFilmModalWindow = (item) => {
     filmModal.append(visual)
     filmModal.append(info)
     filmModalWrap.append(filmModal)
+
+    filmModalWrap.addEventListener('click', (e) => {
+        if (e.target.id === 'filmModal') {
+            onCloseBtnClicked()
+        }
+    })
+
+    setTimeout(() => {
+        filmModalWrap.setAttribute('class', 'filmModal-wrap_show')
+    })
 
     return filmModalWrap
 }

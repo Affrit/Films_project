@@ -17,6 +17,7 @@ const onFilmPushed = (event) => {
     const filmId = +event.path[1].id || +event.path[0].id 
     const pushedFilm = variables.filmsOnPageNow.find(film => film.id === filmId)
     const filmModal = spawnFilmModalWindow(pushedFilm)
+    filmModal.style.transformOrigin = `${event.x}px ${event.y}px`
     root.append(filmModal)
     //filmModal.setAttribute('class', 'filmModal')
     //clearContainer(filmModal)
