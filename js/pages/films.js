@@ -9,18 +9,17 @@ const root = document.getElementById('root')
 const onFilmPushed = (event) => {
     if (event.target.nodeName === 'A') return
     if (event.target.id === 'filmsContainer') return
-    console.log(event)
+
     const oldFilmModal = document.getElementById('filmModal')
     if (oldFilmModal) {
         oldFilmModal.remove()
     }
+    
     const filmId = +event.path[1].id || +event.path[0].id 
     const pushedFilm = variables.filmsOnPageNow.find(film => film.id === filmId)
     const filmModal = spawnFilmModalWindow(pushedFilm)
     filmModal.style.transformOrigin = `${event.x}px ${event.y}px`
     root.append(filmModal)
-    //filmModal.setAttribute('class', 'filmModal')
-    //clearContainer(filmModal)
 }
 
 export const renderCountOfFilms = () => {

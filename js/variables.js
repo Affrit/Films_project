@@ -5,7 +5,7 @@ export const variables = {
     filtredFilmList: [],
     filmsOnPageNow: [],
     favoriteFilmList: favoriteFilmList,
-    maxCountOnPage: 14,
+    maxCountOnPage: 15,
     wasSpawnedOnPage: 0,
     filtrationOptions: {
         searchWord: '',

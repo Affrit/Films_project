@@ -1,14 +1,12 @@
 import { variables } from "./variables.js"
 import { createElement } from "./utils.js"
 
-export const spawnFilms = (filmList, targetBlock, maxCount = 3) => {
-    // if user want to display on page more than filmList includes, user will see rest of filmList
-    if (variables.wasSpawnedOnPage + maxCount > filmList.length) {
-        maxCount = filmList.length - 1 - variables.wasSpawnedOnPage
-    }
-
-    for (let i = 0; i <= maxCount; i++) {
+export const spawnFilms = (filmList, targetBlock, maxCount) => {
+    
+    for (let i = 0; i < maxCount; i++) {
         const filmItem = filmList[i + variables.wasSpawnedOnPage]
+        if (!filmItem) break // if want to display more films than filmList includes
+        
         const imgUrl = filmItem.image?.medium || '#'
         const filmName = filmItem.name || 'Name not found'
         const filmId = filmItem.id // id from server
@@ -35,5 +33,5 @@ export const spawnFilms = (filmList, targetBlock, maxCount = 3) => {
         variables.filmsOnPageNow.push(filmItem)
     }
 
-    variables.wasSpawnedOnPage += maxCount + 1
+    variables.wasSpawnedOnPage += maxCount
 }

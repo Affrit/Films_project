@@ -8,6 +8,8 @@ const genreList = ['Drama', 'Horror', 'Thriller', 'Science-Fiction',
 
 const langList = ['English', 'Japanese']
 
+const perPage = [1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 16, 20, 25, 30]
+
 const getfiltredFilms = (filtrationOptions, filmList) => {
     const { searchWord, genre, lang } = filtrationOptions
     let filtredFilms = []
@@ -61,10 +63,15 @@ const onEnter = (e) => {
     }
 }
 
+const onChangeElemPerPage = ({ target }) => {
+    variables.maxCountOnPage = +target.value
+    renderFilms()
+}
+
 const spawnSelectNode = (optionsList, optionsName) => {
     const selectNode = createElement('select', 'class', 'search__select')
     const defaultOptionNode = createElement('option', 'value', '')
-    defaultOptionNode.innerText = `All ${optionsName}`
+    defaultOptionNode.innerText = optionsName
     selectNode.append(defaultOptionNode)
     
     for (const option of optionsList) {
@@ -99,18 +106,23 @@ export const renderSearch = (targetNode) => {
     search__innerNode.append(search__inputNode)
     search__innerNode.append(search__btnNode)
 
-    const search__paramsNode = createElement('div', 'class', 'search__params')
-    const searchGenreNode = spawnSelectNode(genreList, 'genre')
+    const selectNode = createElement('div', 'class', 'search__params')
+    const searchGenreNode = spawnSelectNode(genreList, 'All genre')
     savedOptions(searchGenreNode, variables.filtrationOptions.genre)
 
-    const searchLangNode = spawnSelectNode(langList, 'lang')
+    const searchLangNode = spawnSelectNode(langList, 'All lang')
     savedOptions(searchLangNode, variables.filtrationOptions.lang)
 
-    search__paramsNode.append(searchGenreNode)
-    search__paramsNode.append(searchLangNode)
+    const elemPerPageNode = spawnSelectNode(perPage, 'Per Page')
+    elemPerPageNode.setAttribute('id', 'elemPerPage')
+    savedOptions(elemPerPageNode, `Per page ${variables.maxCountOnPage}`)
+
+    selectNode.append(searchGenreNode)
+    selectNode.append(searchLangNode)
+    selectNode.append(elemPerPageNode)
 
     searchNode.append(search__innerNode)
-    searchNode.append(search__paramsNode)
+    searchNode.append(selectNode)
     containerNode.append(searchNode)
     targetNode.append(containerNode)
 
@@ -118,4 +130,5 @@ export const renderSearch = (targetNode) => {
     search__btnNode.addEventListener('click', onSearch)
     searchGenreNode.addEventListener('change', onChooseGenre)
     searchLangNode.addEventListener('change', onChooseLang)
+    elemPerPageNode.addEventListener('change', onChangeElemPerPage)
 }
