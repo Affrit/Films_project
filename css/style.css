@@ -511,6 +511,9 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   padding: 15px 30px;
@@ -775,7 +778,7 @@ body {
 }
 
 .filmModal__closeBtn:before {
-  content: '\f00d';
+  content: "\f00d";
   font-family: FontAwesome;
   font-size: 30px;
   color: #000000;
@@ -788,6 +791,63 @@ body {
 }
 
 .filmModal_hide {
+  display: none;
+}
+
+.pagination {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding: 15px 45px;
+}
+
+.pagination__info {
+  padding: 5px;
+}
+
+.pagination__info_hide {
+  display: none;
+}
+
+.pagination__info:nth-child(3) {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.pagination__info:nth-child(3):hover {
+  color: #a14040;
+}
+
+.pagination__btn {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.pagination__btn:before {
+  font-family: FontAwesome;
+  content: "\f054";
+}
+
+.pagination__btn:first-child:before {
+  content: "\f053";
+}
+
+.pagination__btn:hover {
+  color: #a14040;
+}
+
+.pagination__input {
+  width: 50px;
+}
+
+.pagination__input_hide {
   display: none;
 }
 /*# sourceMappingURL=style.css.map */

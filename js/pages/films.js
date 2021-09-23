@@ -3,6 +3,7 @@ import { onFilmLikeBtnPushed } from '../app.js'
 import { variables } from "../variables.js"
 import { spawnFilms } from "../spawnFilms.js"
 import { spawnFilmModalWindow } from './filmModalWindow.js'
+import { createPagination } from './pagination.js'
 
 const root = document.getElementById('root')
 
@@ -40,6 +41,8 @@ export const renderFilms = () => {
     filmsContainer.setAttribute('id', 'filmsContainer')
     spawnFilms(variables.filtredFilmList, filmsContainer, variables.maxCountOnPage)
     root.append(filmsContainer)
+    const pagination = createPagination()
+    root.append(pagination)
     renderLoadMore()
 
     filmsContainer.addEventListener('click', onFilmLikeBtnPushed)

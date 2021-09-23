@@ -4,11 +4,16 @@ import { renderRoute } from './routes.js'
 
 const BASE_URL = 'https://api.tvmaze.com/'
 
+let searchWord = ''
+let currentSearchPage = ''
+const qweryParamSearch = `?q=${searchWord}&page=${currentSearchPage}`
+const SEARCH_ENDPOINT = `search/shows${qweryParamSearch}`
+
 const root = document.getElementById('main')
 
-async function getDataFromServer() {
+async function getDataFromServer(baseUrl, endPoint) {
     try {
-        const dataFromServer = await fetch(`${BASE_URL}shows`)
+        const dataFromServer = await fetch(baseUrl + endPoint)
         const response = await dataFromServer.json()
         if (!dataFromServer.ok || response.error) {
             throw new Error(response.error || 'Bad response from server')
@@ -22,9 +27,11 @@ async function getDataFromServer() {
     }
 }
 
-async function showContent() {
+export async function showContent() {
+    const qweryParamPage = `?page=${variables.currentPage}`
+    const SHOWS_ENDPOINT = `shows${qweryParamPage}`
     try {
-        const response = await getDataFromServer()
+        const response = await getDataFromServer(BASE_URL, SHOWS_ENDPOINT)
         if (response.length === 0) {
             showError('Empty :-(', root)
             return
@@ -32,6 +39,9 @@ async function showContent() {
         variables.commonFilmList = [...response]
         variables.filtredFilmList = [...variables.commonFilmList]
         renderRoute()
+        console.log(variables.currentPage)
+        console.log(qweryParamPage)
+        console.log(SHOWS_ENDPOINT)
         console.log(response)
     } catch (error) {
         showError(error, root)

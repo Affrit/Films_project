@@ -6,7 +6,10 @@ const genreList = ['Drama', 'Horror', 'Thriller', 'Science-Fiction',
                    'Action', 'Crime', 'Music', 'Mystery',
                    'Supernatural', 'Adventure', 'Family', 'Medical']
 
-const langList = ['English', 'Japanese']
+const langList = ['English', 'Japanese', 'Spanish', 'French', 'Dutch',
+                  'German', 'Portuguese', 'Danish', 'Swedish', 'Korean',
+                  'Welsh', 'Norwegian', 'Italian', 'Russian', 'Thai',
+                  'Chinese', 'Turkish', 'Hungarian', 'Ukrainian', 'Polish']
 
 const perPage = [1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 16, 20, 25, 30]
 
