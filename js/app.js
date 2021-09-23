@@ -4,7 +4,7 @@ import { renderRoute } from './routes.js'
 
 const BASE_URL = 'https://api.tvmaze.com/'
 
-const filmsContainer = document.getElementById('filmsContainer')
+const root = document.getElementById('main')
 
 async function getDataFromServer() {
     try {
@@ -18,7 +18,7 @@ async function getDataFromServer() {
 
     } catch (error) {
         console.log(error)
-        showError(error, filmsContainer)
+        showError(error, root)
     }
 }
 
@@ -26,7 +26,7 @@ async function showContent() {
     try {
         const response = await getDataFromServer()
         if (response.length === 0) {
-            showError('Empty :-(', filmsContainer)
+            showError('Empty :-(', root)
             return
         }
         variables.commonFilmList = [...response]
@@ -34,7 +34,7 @@ async function showContent() {
         renderRoute()
         console.log(response)
     } catch (error) {
-        showError(error, filmsContainer)
+        showError(error, root)
     }
 }
 

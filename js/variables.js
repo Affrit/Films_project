@@ -1,4 +1,4 @@
-let favoriteFilmList = JSON.parse(localStorage.getItem('favoriteFilms')) // favorite list
+let favoriteFilmList = JSON.parse(localStorage.getItem('favoriteFilms')) || [] // favorite list
 
 export const variables = {
     commonFilmList: [],
