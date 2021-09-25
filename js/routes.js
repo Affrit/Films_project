@@ -25,6 +25,7 @@ export const renderRoute = () => {
     const route = getURL()
     clearContainer(main)
     clearContainer(root)
+    console.log('route')
     switch (route) {
         case routes.DEFAULT:
             renderSearch(main)

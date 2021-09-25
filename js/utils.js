@@ -12,6 +12,6 @@ export const showError = (error, targetBlock) => {
     const errorText = createElement('span', 'class', 'error')
     errorText.innerText = `${error} :-(`
     console.warn(error)
-    clearContainer(targetBlock)
+    //clearContainer(targetBlock)
     targetBlock.append(errorText)
 }

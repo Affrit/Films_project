@@ -1,22 +1,24 @@
 import { createElement } from "../utils.js"
 import { variables } from "../variables.js"
 import { renderFilms } from './films.js'
+import { showSearchedFilms } from '../app.js'
+import { renderRoute } from "../routes.js"
 
 const genreList = ['Drama', 'Horror', 'Thriller', 'Science-Fiction',
-                   'Action', 'Crime', 'Music', 'Mystery',
-                   'Supernatural', 'Adventure', 'Family', 'Medical']
+    'Action', 'Crime', 'Music', 'Mystery',
+    'Supernatural', 'Adventure', 'Family', 'Medical']
 
 const langList = ['English', 'Japanese', 'Spanish', 'French', 'Dutch',
-                  'German', 'Portuguese', 'Danish', 'Swedish', 'Korean',
-                  'Welsh', 'Norwegian', 'Italian', 'Russian', 'Thai',
-                  'Chinese', 'Turkish', 'Hungarian', 'Ukrainian', 'Polish']
+    'German', 'Portuguese', 'Danish', 'Swedish', 'Korean',
+    'Welsh', 'Norwegian', 'Italian', 'Russian', 'Thai',
+    'Chinese', 'Turkish', 'Hungarian', 'Ukrainian', 'Polish']
 
 const perPage = [1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 16, 20, 25, 30]
 
-const getfiltredFilms = (filtrationOptions, filmList) => {
-    const { searchWord, genre, lang } = filtrationOptions
+export const getfiltredFilms = (filtrationOptions, filmList) => {
+    const { genre, lang } = filtrationOptions
     let filtredFilms = []
-    if (!searchWord && !genre && !lang) return filmList
+    if (!genre && !lang) return filmList
     if (genre) {
         if (filtredFilms.length === 0) {
             filtredFilms = filmList.filter(film => film.genres.some(ganre => ganre === genre))
@@ -29,13 +31,6 @@ const getfiltredFilms = (filtrationOptions, filmList) => {
             filtredFilms = filmList.filter(film => film.language === lang)
         } else {
             filtredFilms = filtredFilms.filter(film => film.language === lang)
-        }
-    }
-    if (searchWord) {
-        if (filtredFilms.length === 0) {
-            filtredFilms = filmList.filter(film => film.name.toLowerCase().includes(searchWord.toLowerCase()))
-        } else {
-            filtredFilms = filtredFilms.filter(film => film.name.toLowerCase().includes(searchWord.toLowerCase()))
         }
     }
 
@@ -52,12 +47,14 @@ const onChooseLang = ({ target }) => {
 
 const onSearch = () => {
     const searchInput = document.getElementById('searchInput')
-    variables.filmsOnPageNow = []
-    variables.wasSpawnedOnPage = 0
     variables.filtrationOptions.searchWord = searchInput.value
 
-    variables.filtredFilmList = getfiltredFilms(variables.filtrationOptions, variables.commonFilmList)
-    renderFilms()
+    if (searchInput.value) {
+        showSearchedFilms()
+    } else { // если инпут пустой то фильтровать загруженные все фильмы
+        variables.filtredFilmList = getfiltredFilms(variables.filtrationOptions, variables.commonFilmList)
+        renderFilms()
+    }
 }
 
 const onEnter = (e) => {
@@ -76,7 +73,7 @@ const spawnSelectNode = (optionsList, optionsName) => {
     const defaultOptionNode = createElement('option', 'value', '')
     defaultOptionNode.innerText = optionsName
     selectNode.append(defaultOptionNode)
-    
+
     for (const option of optionsList) {
         const optionNode = createElement('option', 'value', option)
         optionNode.innerText = option
