@@ -3,8 +3,8 @@ import { variables } from "../variables.js"
 import { showContent } from "../app.js"
 
 const onInputPage = ({ target }) => {
-    const pageNum = +target.value
-    if (pageNum < 0 || isNaN(pageNum)) return
+    const pageNum = +target.value - 1
+    if (pageNum < 0 || pageNum > 98 || isNaN(pageNum)) return
 
     const fromPages = document.getElementById('fromPages')
     target.setAttribute('class', 'pagination__input_hide')
@@ -30,11 +30,12 @@ const onPagination = ({ target }) => {
         inputPage.setAttribute('class', 'pagination__input')
         
     } else if (target.id === 'nextPageBtn') {
+        if (variables.currentPage >= 98) return
         variables.currentPage += 1
         showContent()
         
     } else if (target.id === 'previousPage') {
-        if (variables.currentPage === 0) return
+        if (variables.currentPage <= 0) return
         variables.currentPage -= 1
         showContent()
     }
@@ -53,8 +54,8 @@ export const createPagination = () => {
     fromPages.setAttribute('id', 'fromPages')
 
 
-    currentPage.innerText = variables.currentPage
-    countOfPages.innerText = '5'
+    currentPage.innerText = variables.currentPage + 1
+    countOfPages.innerText = '99'
     fromPages.innerText = 'from'
 
     const inputPageNum = createInputPageNum()

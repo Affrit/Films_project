@@ -7,7 +7,7 @@ export const spawnFilms = (filmList, targetBlock, maxCount) => {
         const filmItem = filmList[i + variables.wasSpawnedOnPage]
         if (!filmItem) break // if want to display more films than filmList includes
         
-        const imgUrl = filmItem.image?.medium || '#'
+        const imgUrl = filmItem.image?.medium || '../img/NoImage.png'
         const filmName = filmItem.name || 'Name not found'
         const filmId = filmItem.id // id from server
 

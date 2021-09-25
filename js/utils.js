@@ -11,6 +11,7 @@ export const createElement = (elementType, attributeType, attributeValue) => {
 export const showError = (error, targetBlock) => {
     const errorText = createElement('span', 'class', 'error')
     errorText.innerText = `${error} :-(`
-    console.log(error)
+    console.warn(error)
+    clearContainer(targetBlock)
     targetBlock.append(errorText)
 }

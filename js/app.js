@@ -9,7 +9,7 @@ let currentSearchPage = ''
 const qweryParamSearch = `?q=${searchWord}&page=${currentSearchPage}`
 const SEARCH_ENDPOINT = `search/shows${qweryParamSearch}`
 
-const root = document.getElementById('main')
+const root = document.getElementById('root')
 
 async function getDataFromServer(baseUrl, endPoint) {
     try {
@@ -22,7 +22,7 @@ async function getDataFromServer(baseUrl, endPoint) {
         return response
 
     } catch (error) {
-        console.log(error)
+        console.warn(error)
         showError(error, root)
     }
 }
@@ -32,9 +32,8 @@ export async function showContent() {
     const SHOWS_ENDPOINT = `shows${qweryParamPage}`
     try {
         const response = await getDataFromServer(BASE_URL, SHOWS_ENDPOINT)
-        if (response.length === 0) {
-            showError('Empty :-(', root)
-            return
+        if (!response || response.length === 0) {
+            throw new Error('Bad response from server')
         }
         variables.commonFilmList = [...response]
         variables.filtredFilmList = [...variables.commonFilmList]
@@ -44,6 +43,7 @@ export async function showContent() {
         console.log(SHOWS_ENDPOINT)
         console.log(response)
     } catch (error) {
+        console.warn(error)
         showError(error, root)
     }
 }
