@@ -90,3 +90,13 @@ export const onFilmLikeBtnPushed = (event) => {
         }
     }
 }
+
+// =====header===========
+
+const LogOut = document.getElementById('LogOut')
+
+const onLogOut = () => {
+    window.location.replace('')
+}
+
+LogOut.addEventListener('click', onLogOut)

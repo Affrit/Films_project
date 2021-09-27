@@ -5,6 +5,7 @@ import { clearContainer } from './utils.js'
 import { renderAbout } from './pages/about.js'
 import { renderContacts } from './pages/contacts.js'
 import { renderPage404 } from './pages/page404.js'
+import { renderLogin } from './pages/login.js'
 
 const main = document.getElementById('main')
 const root = document.getElementById('root')
@@ -28,8 +29,7 @@ export const renderRoute = () => {
     console.log('route')
     switch (route) {
         case routes.DEFAULT:
-            renderSearch(main)
-            renderFilms()
+            renderLogin(main)
             break
 
         case routes.FILMS:
