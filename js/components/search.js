@@ -1,6 +1,5 @@
-import { createElement } from "../utils.js"
+import { createElement } from "../utils/utils.js"
 import { variables } from "../variables.js"
-import { renderFilms } from './films.js'
 import { showSearchedFilms } from '../app.js'
 import { renderRoute } from "../routes.js"
 
@@ -53,7 +52,7 @@ const onSearch = () => {
         showSearchedFilms()
     } else { // если инпут пустой то фильтровать загруженные все фильмы
         variables.filtredFilmList = getfiltredFilms(variables.filtrationOptions, variables.commonFilmList)
-        renderFilms()
+        renderRoute()
     }
 }
 
@@ -65,7 +64,7 @@ const onEnter = (e) => {
 
 const onChangeElemPerPage = ({ target }) => {
     variables.maxCountOnPage = +target.value
-    renderFilms()
+    renderRoute()
 }
 
 const spawnSelectNode = (optionsList, optionsName) => {
@@ -93,7 +92,7 @@ const savedOptions = (selectNode, option) => {
     }
 }
 
-export const renderSearch = (targetNode) => {
+export const createSearch = () => {
     const containerNode = createElement('div', 'class', 'container')
     const searchNode = createElement('div', 'class', 'search')
     const search__innerNode = createElement('div', 'class', 'search__inner')
@@ -124,11 +123,12 @@ export const renderSearch = (targetNode) => {
     searchNode.append(search__innerNode)
     searchNode.append(selectNode)
     containerNode.append(searchNode)
-    targetNode.append(containerNode)
 
     search__inputNode.addEventListener('keydown', onEnter)
     search__btnNode.addEventListener('click', onSearch)
     searchGenreNode.addEventListener('change', onChooseGenre)
     searchLangNode.addEventListener('change', onChooseLang)
     elemPerPageNode.addEventListener('change', onChangeElemPerPage)
+
+    return containerNode
 }

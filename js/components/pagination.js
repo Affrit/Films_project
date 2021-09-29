@@ -1,4 +1,4 @@
-import { createElement } from "../utils.js"
+import { createElement } from "../utils/utils.js"
 import { variables } from "../variables.js"
 import { showContent } from "../app.js"
 

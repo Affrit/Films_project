@@ -1,4 +1,4 @@
-import { variables } from "./variables.js"
+import { variables } from "../variables.js"
 import { createElement } from "./utils.js"
 
 export const spawnFilms = (filmList, targetBlock, maxCount) => {

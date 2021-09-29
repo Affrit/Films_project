@@ -1,4 +1,6 @@
-import { createElement } from '../utils.js'
+import { createElement } from '../utils/utils.js'
+import { clearContainer } from '../utils/utils.js'
+import { createHeader } from '../components/header.js'
 
 export const createLogin = () => {
     const lognWrap = createElement('div', 'class', 'login-wrap')
@@ -50,7 +52,9 @@ export const createLogin = () => {
     return lognWrap
 }
 
-export const renderLogin = (targetBlock) => {
+export const renderLoginPage = (targetBlock) => {
+    const header = createHeader()
     const loginBlock = createLogin()
+    targetBlock.append(header)
     targetBlock.append(loginBlock)
 }

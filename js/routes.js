@@ -1,16 +1,12 @@
-import { clearContainer } from './utils.js'
-import renderFavorite from './pages/favorite.js'
-import { renderFilms } from './pages/films.js'
-import { renderSearch } from './pages/search.js'
-import { renderAbout } from './pages/about.js'
-import { renderContacts } from './pages/contacts.js'
+import { clearContainer } from './utils/utils.js'
+import { renderFavoritePage } from './pages/favoritePage.js'
+import { renderFilmsPage } from './pages/filmsPage.js'
+import { renderAboutPage } from './pages/aboutPage.js'
+import { renderContactsPage } from './pages/contactsPage.js'
 import { renderPage404 } from './pages/page404.js'
-import { renderLogin } from './pages/login.js'
-import { renderHeader } from './pages/header.js'
+import { renderLoginPage } from './pages/loginPage.js'
 
-const main = document.getElementById('main')
-const root = document.getElementById('root')
-const pageWrapper = document.getElementById('page-wrapper')
+const pageWrapper = document.getElementById('root')
 
 const routes = {
     DEFAULT: '',
@@ -27,39 +23,35 @@ const getURL = () => {
 
 export const renderRoute = () => {
     const route = getURL()
-    clearContainer(main)
-    clearContainer(root)
+    clearContainer(pageWrapper)
     console.log('route')
     switch (route) {
         case routes.DEFAULT:
-            renderHeader(pageWrapper)
-            renderLogin(main)
+            renderLoginPage(pageWrapper)
             break
 
         case routes.LOGIN:
-            renderHeader(pageWrapper)
-            renderLogin(main)
+            renderLoginPage(pageWrapper)
             break
 
         case routes.FILMS:
-            renderSearch(main)
-            renderFilms()
+            renderFilmsPage(pageWrapper)
             break
 
         case routes.FAVORITE:
-            renderFavorite(main)
+            renderFavoritePage(pageWrapper)
             break
 
         case routes.ABOUT:
-            renderAbout(main)
+            renderAboutPage(pageWrapper)
             break
 
         case routes.CONTACTS:
-            renderContacts(main)
+            renderContactsPage(pageWrapper)
             break
 
         default:
-            renderPage404(main)
+            renderPage404(pageWrapper)
             break
     }
 }
