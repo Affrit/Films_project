@@ -52,12 +52,12 @@ export async function showSearchedFilms() {
         const response = await getDataFromServer(BASE_URL, SEARCH_ENDPOINT)
         if (!response) {
             throw new Error('Bad response from server')
-        } 
+        }
 
         const foundFilms = response.reduce((acc, item) => {
             return [...acc, item.show]
         }, [])
-        
+
         variables.filtredFilmList = [...foundFilms]
         variables.filtredFilmList = getfiltredFilms(variables.filtrationOptions, variables.filtredFilmList)
 
@@ -90,13 +90,3 @@ export const onFilmLikeBtnPushed = (event) => {
         }
     }
 }
-
-// =====header===========
-
-const LogOut = document.getElementById('LogOut')
-
-const onLogOut = () => {
-    window.location.replace('')
-}
-
-LogOut.addEventListener('click', onLogOut)

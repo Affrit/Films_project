@@ -426,6 +426,10 @@ body {
   right: 0;
 }
 
+.user_hide {
+  display: none;
+}
+
 .user__btn {
   border-radius: 40px;
   cursor: pointer;

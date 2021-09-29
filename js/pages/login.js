@@ -36,8 +36,13 @@ export const createLogin = () => {
     const onSubmitForm = (event) => {
         event.preventDefault()
         if (!formLoginInput.value || !formPasswordInput.value) return
+
+        const user = document.getElementById('user')
+        const userName = document.getElementById('userName')
+        userName.innerText = formLoginInput.value
+        user.setAttribute('class', 'user')
+    
         window.location.replace('/#films')
-        console.log(event)
     }
 
     formBtn.addEventListener('click', onSubmitForm)

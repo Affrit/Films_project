@@ -16,6 +16,10 @@
     top: 15px;
     right: 0;
 
+    &_hide {
+        display: none;
+    }
+
     &__btn {
         border-radius: ($base_radius * 2);
         //background: $main_color;
