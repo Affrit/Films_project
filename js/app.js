@@ -9,7 +9,7 @@ const root = document.getElementById('root')
 
 async function getDataFromServer(baseUrl, endPoint) {
     const apiUrl = baseUrl + endPoint
-    console.log(apiUrl)
+    
     try {
         const dataFromServer = await fetch(apiUrl)
         const response = await dataFromServer.json()

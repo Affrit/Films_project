@@ -1,0 +1,64 @@
+.search {
+    padding: 30px 100px 15px 100px;
+
+    &__inner {
+        margin-bottom: 20px;
+        background: $main_color;
+        border-radius: $base_radius * 2;
+
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__input {
+        padding: 20px;
+        border-radius: ($base_radius * 2) 0 0 ($base_radius * 2);
+        background: $main_color;
+        width: 70%;
+        border: none;
+    }
+
+    &__btn {
+        @extend %btnCommon;
+        border-radius: 0 ($base_radius * 2) ($base_radius * 2) 0;
+        padding: 20px;
+        background: $main_color;
+        width: 30%;
+        position: relative;
+
+        &:hover {
+            color: $active_color;
+            background: $card_bg;
+        }
+
+        &:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1px;
+            height: 100%;
+            background: black;
+        }
+    }
+
+    &__params {
+        margin-left: 30px;
+    }
+
+    &__select {
+        border-radius: $base_radius * 2;
+        background: $main_color;
+        margin-left: 10px;
+        padding: 10px;
+        padding-right: 50px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.5s;
+
+        &:hover {
+            color: $active_color;
+            background: $card_bg;
+        }
+    }
+}

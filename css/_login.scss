@@ -1,0 +1,47 @@
+.login-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 0; // temp
+}
+
+.form {
+    text-align: center;
+    justify-content: center;
+
+    &__fieldset {
+        border-radius: $base_radius;
+        padding-bottom: 20px;
+    }
+
+    &__title {
+        padding: 10px;
+        font-size: 30px;
+    }
+
+    &__item {
+        padding: 10px;
+    }
+
+    &__input {
+        border-radius: $base_radius;
+        border: black 1px solid;
+        font-size: 30px;
+        padding: 10px;
+    }
+
+    &__btn {
+        @extend %btnCommon;
+        margin-top: 15px;
+        border-radius: ($base_radius * 2);
+        padding: 20px;
+        background: $main_color;
+        width: 30%;
+        position: relative;
+
+        &:hover {
+            color: $active_color;
+            background: $card_bg;
+        }
+    }
+}

@@ -8,11 +8,13 @@ $modal_bg: #EDEDED;
 $main_bg: $white;
 $text_color: $black;
 $active_color: #a14040;
+$user_color: #008000;
 
 $text_color_lite: #999999;
 $form_field: #f2f2f2;
 $base_radius: 20px;
 $shadow: #d6d4d4;
+$transition: all 0.5s;
 
 $base_font: Arial, Helvetica, sans-serif;
-$main_font: open_sans, $base_font;
+$main_font: $base_font;

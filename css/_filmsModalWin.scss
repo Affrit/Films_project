@@ -1,0 +1,99 @@
+.filmModal-wrap_show,
+.filmModal-wrap_hide {
+    position: fixed;
+    overflow: hidden;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: all 0.5s;
+}
+
+.filmModal-wrap_hide {
+    background-color: rgba(0, 0, 0, 0);
+    transform: scale(0);
+}
+
+.filmModal {
+    display: flex;
+    border-radius: $base_radius;
+    box-shadow: 1px 1px 3px 3px #efefef;
+    overflow: hidden;
+    width: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: $main_color;
+    transition: all 1s;
+
+    &_hide {
+        display: none;
+    }
+
+    &__visual {
+        position: relative;
+        width: 45%;
+        padding-top: 63%;
+    }
+
+    &__img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        object-fit: cover;
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        width: 55%;
+        padding: 20px;
+        font-size: 16px;
+        color: $text_color;
+        position: relative;
+    }
+
+    &__name {
+        text-transform: uppercase;
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    &__info {
+        padding: 5px 0;
+    }
+
+    &__summary {
+        overflow-y: auto;
+        max-height: 350px;
+        padding: 5px 0;
+    }
+
+    &__closeBtn {
+        @extend %btnCommon;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: transparent;
+
+        &:before {
+            content: "\f00d";
+            font-family: FontAwesome;
+            font-size: 30px;
+            color: $black;
+            transition: $transition;
+        }
+
+        &:hover {
+            &:before {
+                color: $active_color;
+            }
+        }
+    }
+}

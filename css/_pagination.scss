@@ -1,0 +1,69 @@
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    padding: 15px 45px;
+
+    &__info {
+        padding: 5px;
+
+        &_hide {
+            display: none;
+        }
+
+        &:nth-child(3) {
+            transition: all 0.5s;
+            cursor: pointer;
+
+            &:hover {
+                color: $active_color;
+            }
+        }
+    }
+
+    &__input {
+        width: 50px;
+
+        &_hide {
+            display: none;
+        }
+    }
+
+    &__btn {
+        @extend %btnCommon;
+        background: transparent;
+
+        &:before {
+            font-family: FontAwesome;
+            content: "\f054";
+        }
+
+        &:first-child {
+            &:before {
+                content: "\f053";
+            }
+        }
+
+        &:hover {
+            color: $active_color;
+        }
+    }
+}
+
+.btn-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.more-btn {
+    @extend %btnCommon;
+    color: $text_color;
+    background: $main_color;
+    border-radius: $base_radius * 2;
+    padding: 10px 20px;
+
+    &:hover {
+        color: $active_color;
+        background: $card_bg;
+    }
+}

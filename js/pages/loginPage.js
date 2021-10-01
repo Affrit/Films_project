@@ -1,6 +1,6 @@
 import { createElement } from '../utils/utils.js'
-import { clearContainer } from '../utils/utils.js'
 import { createHeader } from '../components/header.js'
+import { variables } from '../variables.js'
 
 export const createLogin = () => {
     const lognWrap = createElement('div', 'class', 'login-wrap')
@@ -16,7 +16,7 @@ export const createLogin = () => {
     formLoginInput.setAttribute('type', 'text')
     formLoginInput.setAttribute('placeholder', 'insert your login')
     const formPasswordInput = createElement('input', 'class', 'form__input')
-    formPasswordInput.setAttribute('type', 'text')
+    formPasswordInput.setAttribute('type', 'password')
     formPasswordInput.setAttribute('placeholder', 'insert your password')
 
     const btnWrap = createElement('div', 'class', 'btn-wrap')
@@ -38,12 +38,8 @@ export const createLogin = () => {
     const onSubmitForm = (event) => {
         event.preventDefault()
         if (!formLoginInput.value || !formPasswordInput.value) return
-
-        const user = document.getElementById('user')
-        const userName = document.getElementById('userName')
-        userName.innerText = formLoginInput.value
-        user.setAttribute('class', 'user')
-    
+        const currentUser = JSON.stringify(formLoginInput.value)
+        localStorage.setItem('currentUser', currentUser)
         window.location.replace('/#films')
     }
 

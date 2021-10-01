@@ -17,6 +17,12 @@ const routes = {
     CONTACTS: 'contacts'
 }
 
+// user will be redirect to loginPage, if it didn't logged in
+const isUserAuth = () => {
+    if (localStorage.getItem('currentUser')) return
+    window.location.replace('/#login')
+}
+
 const getURL = () => {
     return window.location.hash.slice(1)
 }
@@ -24,7 +30,7 @@ const getURL = () => {
 export const renderRoute = () => {
     const route = getURL()
     clearContainer(pageWrapper)
-    console.log('route')
+    
     switch (route) {
         case routes.DEFAULT:
             renderLoginPage(pageWrapper)
@@ -35,10 +41,12 @@ export const renderRoute = () => {
             break
 
         case routes.FILMS:
+            isUserAuth()
             renderFilmsPage(pageWrapper)
             break
 
         case routes.FAVORITE:
+            isUserAuth()
             renderFavoritePage(pageWrapper)
             break
 
@@ -56,4 +64,4 @@ export const renderRoute = () => {
     }
 }
 
-window.addEventListener("hashchange", renderRoute)
+window.addEventListener('hashchange', renderRoute)

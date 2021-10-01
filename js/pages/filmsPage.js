@@ -9,6 +9,8 @@ import { createLoadMore } from "../components/loadMore.js"
 import { createCountOfFilms } from "../components/countOfFilms.js"
 import { createSearch } from "../components/search.js"
 
+const modal = document.getElementById('modal')
+
 const onFilmPushed = (event) => {
     if (event.target.nodeName === 'A') return
     if (event.target.id === 'filmsContainer') return
@@ -22,7 +24,7 @@ const onFilmPushed = (event) => {
     const pushedFilm = variables.filmsOnPageNow.find(film => film.id === filmId)
     const filmModal = spawnFilmModalWindow(pushedFilm)
     filmModal.style.transformOrigin = `${event.x}px ${event.y}px`
-    root.append(filmModal)
+    modal.append(filmModal)
 }
 
 const createFilms = () => {

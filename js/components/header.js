@@ -21,9 +21,12 @@ const createMenu = (refsArr) => {
 }
 
 const onLogOut = () => {
-    const user = document.getElementById('user')
-    user.setAttribute('class', 'user_hide')
-    window.location.replace('#login')
+    localStorage.removeItem('currentUser')
+    window.location.replace('/#login')
+}
+
+const onLogIn = () => {
+    window.location.replace('/#login')
 }
 
 export const createHeader = () => {
@@ -31,22 +34,35 @@ export const createHeader = () => {
     header.setAttribute('id', 'header')
     const container = createElement('div', 'class', 'container')
     const menu = createMenu(refsArray)
-
+    container.append(menu)
     const user = createElement('div', 'class', 'user')
     user.setAttribute('id', 'user')
-    const userName = createElement('span', 'class', 'user__name')
-    userName.setAttribute('id', 'userName')
-    const logOut = createElement('button', 'class', 'user__btn')
-    logOut.innerText = 'LogOut'
 
-    user.append(userName)
-    user.append(logOut)
+    const userData = localStorage.getItem('currentUser')
+    const currentUser = JSON.parse(userData) // or null
 
-    container.append(menu)
+    if (currentUser) {
+        const userName = createElement('span', 'class', 'user__name')
+        userName.setAttribute('id', 'userName')
+        const logOut = createElement('button', 'class', 'user__btn')
+        logOut.innerText = 'LogOut'
+        userName.innerText = currentUser
+
+        user.append(userName)
+        user.append(logOut)
+
+        logOut.addEventListener('click', onLogOut)
+    } else {
+        const logIn = createElement('button', 'class', 'user__btn')
+        logIn.innerText = 'LogIn'
+
+        user.append(logIn)
+
+        logIn.addEventListener('click', onLogIn)
+    }
+
     container.append(user)
     header.append(container)
-
-    logOut.addEventListener('click', onLogOut)
 
     return header
 }
