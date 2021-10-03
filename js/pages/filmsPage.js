@@ -46,13 +46,16 @@ export const renderFilmsPage = (targetNode) => {
     const search = createSearch()
     const countOfFilms = createCountOfFilms()
     const films = createFilms()
-    const pagination = createPagination()
     const loadMore = createLoadMore()
 
     targetNode.append(header)
     targetNode.append(search)
     targetNode.append(countOfFilms)
     targetNode.append(films)
-    targetNode.append(pagination)
     targetNode.append(loadMore)
+
+    if (!variables.filtrationOptions.searchWord) { // don't create and show pagintion when serch was used
+        const pagination = createPagination()
+        targetNode.append(pagination)
+    }
 }

@@ -6,6 +6,12 @@ const onCloseBtnClicked = () => {
     setTimeout(() => filmModal.remove(), 500)
 }
 
+const onOutOfWinClicked = ({ target }) => {
+    if (target.id === 'filmModal') {
+        onCloseBtnClicked()
+    }
+}
+
 export const spawnFilmModalWindow = (item) => {
     
     const imgUrl = item.image.medium || '#'
@@ -55,11 +61,7 @@ export const spawnFilmModalWindow = (item) => {
     filmModal.append(info)
     filmModalWrap.append(filmModal)
 
-    filmModalWrap.addEventListener('click', (e) => {
-        if (e.target.id === 'filmModal') {
-            onCloseBtnClicked()
-        }
-    })
+    filmModalWrap.addEventListener('click', onOutOfWinClicked)
 
     setTimeout(() => {
         filmModalWrap.setAttribute('class', 'filmModal-wrap_show')

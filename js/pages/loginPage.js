@@ -1,6 +1,5 @@
 import { createElement } from '../utils/utils.js'
 import { createHeader } from '../components/header.js'
-import { variables } from '../variables.js'
 
 export const createLogin = () => {
     const lognWrap = createElement('div', 'class', 'login-wrap')

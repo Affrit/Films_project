@@ -73,12 +73,14 @@ export const onFilmLikeBtnPushed = (event) => {
         const filmId = +event.path[2].id
         let newFavoriteFilmList = [...variables.favoriteFilmList]
         const idInArray = variables.favoriteFilmList.findIndex(film => film.id === filmId) // есть ли уже
+
         if (idInArray !== -1) {
             newFavoriteFilmList.splice(idInArray, 1)
         } else {
             const likedFilm = variables.filmsOnPageNow.find(film => film.id === filmId)
             newFavoriteFilmList = [...variables.favoriteFilmList, likedFilm]
         }
+        
         const newFavoriteFilmListJson = JSON.stringify(newFavoriteFilmList)
         localStorage.setItem('favoriteFilms', newFavoriteFilmListJson)
         variables.favoriteFilmList = newFavoriteFilmList

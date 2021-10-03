@@ -3,27 +3,18 @@ import { variables } from "../variables.js"
 import { showContent } from "../app.js"
 
 const onInputPage = ({ target }) => {
-    const pageNum = +target.value - 1
-    if (pageNum < 0 || pageNum > 98 || isNaN(pageNum)) return
-
     const fromPages = document.getElementById('fromPages')
     target.setAttribute('class', 'pagination__input_hide')
     fromPages.setAttribute('class', 'pagination__info')
+
+    const pageNum = +target.value - 1
+    if (pageNum < 0 || pageNum > 98 || isNaN(pageNum)) return
 
     variables.currentPage = pageNum
     showContent()
 }
 
-const createInputPageNum = () => {
-    const inputPageNum = createElement('input', 'class', 'pagination__input_hide')
-    inputPageNum.setAttribute('type', 'number')
-    inputPageNum.setAttribute('id', 'inputPage')
-    inputPageNum.addEventListener('change', onInputPage)
-
-    return inputPageNum
-}
-
-const onPagination = ({ target }) => {
+const onPaginationUsed = ({ target }) => {
     if (target.id === 'fromPages') {
         const inputPage = document.getElementById('inputPage')
         target.setAttribute('class', 'pagination__info_hide')
@@ -39,6 +30,17 @@ const onPagination = ({ target }) => {
         variables.currentPage -= 1
         showContent()
     }
+}
+
+const createInputPageNum = () => {
+    const inputPageNum = createElement('input', 'class', 'pagination__input_hide')
+    inputPageNum.setAttribute('type', 'number')
+    inputPageNum.setAttribute('id', 'inputPage')
+    
+    inputPageNum.addEventListener('change', onInputPage)
+    inputPageNum.addEventListener('blur', onInputPage)
+
+    return inputPageNum
 }
 
 export const createPagination = () => {
@@ -68,7 +70,7 @@ export const createPagination = () => {
     paginationBlock.append(nextPageBtn)
 
 
-    paginationBlock.addEventListener('click', onPagination)
+    paginationBlock.addEventListener('click', onPaginationUsed)
 
     return paginationBlock
 }

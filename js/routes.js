@@ -33,7 +33,8 @@ export const renderRoute = () => {
     
     switch (route) {
         case routes.DEFAULT:
-            renderLoginPage(pageWrapper)
+            isUserAuth()
+            renderFilmsPage(pageWrapper)
             break
 
         case routes.LOGIN:
