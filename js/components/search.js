@@ -16,24 +16,20 @@ const perPage = [1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 16, 20, 25, 30]
 
 export const getFiltredFilms = (filtrationOptions, filmList) => {
     const { genre, lang } = filtrationOptions
-    let filtredFilms = []
-    if (!genre && !lang) return filmList
-    if (genre) {
-        if (filtredFilms.length === 0) {
-            filtredFilms = filmList.filter(film => film.genres.some(ganre => ganre === genre))
-        } else {
-            filtredFilms = filtredFilms.filter(film => film.genres.some(ganre => ganre === genre))
-        }
-    }
-    if (lang) {
-        if (filtredFilms.length === 0) {
-            filtredFilms = filmList.filter(film => film.language === lang)
-        } else {
-            filtredFilms = filtredFilms.filter(film => film.language === lang)
-        }
-    }
+    if (!lang && !genre) return filmList
 
-    return filtredFilms
+    if (lang && genre) {
+        return filmList.filter(film => {
+            return film.language === lang &&
+            film.genres.some(ganre => ganre === genre)
+        })
+    }
+    else if (lang) {
+        return filmList.filter(film => film.language === lang)
+    }
+    else if (genre) {
+        return filmList.filter(film => film.genres.some(ganre => ganre === genre))
+    }
 }
 
 const onChooseGenre = ({ target }) => {
@@ -67,7 +63,7 @@ const onChangeElemPerPage = ({ target }) => {
     render()
 }
 
-const spawnSelectNode = (optionsList, optionsName) => {
+const createSelectNode = (optionsList, optionsName) => {
     const selectNode = createElement('select', 'class', 'search__select')
     const defaultOptionNode = createElement('option', 'value', '')
     defaultOptionNode.innerText = optionsName
@@ -106,13 +102,13 @@ export const createSearch = () => {
     search__innerNode.append(search__btnNode)
 
     const selectNode = createElement('div', 'class', 'search__params')
-    const searchGenreNode = spawnSelectNode(genreList, 'All genre')
+    const searchGenreNode = createSelectNode(genreList, 'All genre')
     savedOptions(searchGenreNode, variables.filtrationOptions.genre)
 
-    const searchLangNode = spawnSelectNode(langList, 'All lang')
+    const searchLangNode = createSelectNode(langList, 'All lang')
     savedOptions(searchLangNode, variables.filtrationOptions.lang)
 
-    const elemPerPageNode = spawnSelectNode(perPage, 'Per Page')
+    const elemPerPageNode = createSelectNode(perPage, 'Per Page')
     elemPerPageNode.setAttribute('id', 'elemPerPage')
     savedOptions(elemPerPageNode, `Per page ${variables.maxCountOnPage}`)
 

@@ -29,17 +29,16 @@ export async function showContent(endpoint) {
         if (!response) {
             throw new Error('Bad response from server')
         }
-    
+
         if (response.length > 10) {
             variables.commonFilmList = [...response]
-            variables.filtredFilmList = [...variables.commonFilmList]
+            variables.filtredFilmList = getFiltredFilms(variables.filtrationOptions, variables.commonFilmList)
         } else {
             const foundFilms = response.reduce((acc, item) => {
                 return [...acc, item.show]
             }, [])
-    
-            variables.filtredFilmList = [...foundFilms]
-            variables.filtredFilmList = getFiltredFilms(variables.filtrationOptions, variables.filtredFilmList)
+
+            variables.filtredFilmList = getFiltredFilms(variables.filtrationOptions, foundFilms)
         }
 
         render()
