@@ -48,7 +48,7 @@ export async function showContent(endpoint) {
     }
 }
 
-showContent(`shows?page=${variables.currentPage}`)
+showContent(`shows?page=0`)
 
 export const onFilmLikeBtnPushed = (event) => {
     if (event.target.nodeName === 'A') {

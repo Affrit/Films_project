@@ -1,6 +1,7 @@
 import { createElement } from "../utils/utils.js"
-import { variables } from "../variables.js"
 import { showContent } from "../app.js"
+
+let currentPage = 0
 
 const onInputPage = ({ target }) => {
     const fromPages = document.getElementById('fromPages')
@@ -10,8 +11,8 @@ const onInputPage = ({ target }) => {
     const pageNum = +target.value - 1
     if (pageNum < 0 || pageNum > 98 || isNaN(pageNum)) return
 
-    variables.currentPage = pageNum
-    showContent(`shows?page=${variables.currentPage}`)
+    currentPage = pageNum
+    showContent(`shows?page=${currentPage}`)
 }
 
 const onPaginationUsed = ({ target }) => {
@@ -21,56 +22,54 @@ const onPaginationUsed = ({ target }) => {
         inputPage.setAttribute('class', 'pagination__input')
         
     } else if (target.id === 'nextPageBtn') {
-        if (variables.currentPage >= 98) return
-        variables.currentPage += 1
-        showContent(`shows?page=${variables.currentPage}`)
+        if (currentPage >= 98) return
+        currentPage += 1
+        showContent(`shows?page=${currentPage}`)
         
     } else if (target.id === 'previousPage') {
-        if (variables.currentPage <= 0) return
-        variables.currentPage -= 1
-        showContent(`shows?page=${variables.currentPage}`)
+        if (currentPage <= 0) return
+        currentPage -= 1
+        showContent(`shows?page=${currentPage}`)
     }
 }
 
 const createInputPageNum = () => {
-    const inputPageNum = createElement('input', 'class', 'pagination__input_hide')
-    inputPageNum.setAttribute('type', 'number')
-    inputPageNum.setAttribute('id', 'inputPage')
+    const inputPageNumNode = createElement('input', 'class', 'pagination__input_hide')
+    inputPageNumNode.setAttribute('type', 'number')
+    inputPageNumNode.setAttribute('id', 'inputPage')
     
-    inputPageNum.addEventListener('change', onInputPage)
-    inputPageNum.addEventListener('blur', onInputPage)
+    inputPageNumNode.addEventListener('change', onInputPage)
+    inputPageNumNode.addEventListener('blur', onInputPage)
 
-    return inputPageNum
+    return inputPageNumNode
 }
 
 export const createPagination = () => {
-    const paginationBlock = createElement('div', 'class', 'pagination')
-    const previousPageBtn = createElement('button', 'class', 'pagination__btn')
-    const nextPageBtn = createElement('button', 'class', 'pagination__btn')
-    const currentPage = createElement('span', 'class', 'pagination__info')
-    const countOfPages = createElement('span', 'class', 'pagination__info')
-    const fromPages = createElement('span', 'class', 'pagination__info')
+    const paginationBlockNode = createElement('div', 'class', 'pagination')
+    const previousPageBtnNode = createElement('button', 'class', 'pagination__btn')
+    const nextPageBtnNode = createElement('button', 'class', 'pagination__btn')
+    const currentPageNode = createElement('span', 'class', 'pagination__info')
+    const countOfPagesNode = createElement('span', 'class', 'pagination__info')
+    const fromPagesNode = createElement('span', 'class', 'pagination__info')
 
-    previousPageBtn.setAttribute('id', 'previousPage')
-    nextPageBtn.setAttribute('id', 'nextPageBtn')
-    fromPages.setAttribute('id', 'fromPages')
+    previousPageBtnNode.setAttribute('id', 'previousPage')
+    nextPageBtnNode.setAttribute('id', 'nextPageBtn')
+    fromPagesNode.setAttribute('id', 'fromPages')
 
-
-    currentPage.innerText = variables.currentPage + 1
-    countOfPages.innerText = '99'
-    fromPages.innerText = 'from'
+    currentPageNode.innerText = currentPage + 1
+    countOfPagesNode.innerText = '99'
+    fromPagesNode.innerText = 'from'
 
     const inputPageNum = createInputPageNum()
 
-    paginationBlock.append(previousPageBtn)
-    paginationBlock.append(currentPage)
-    paginationBlock.append(fromPages)
-    paginationBlock.append(inputPageNum)
-    paginationBlock.append(countOfPages)
-    paginationBlock.append(nextPageBtn)
+    paginationBlockNode.append(previousPageBtnNode)
+    paginationBlockNode.append(currentPageNode)
+    paginationBlockNode.append(fromPagesNode)
+    paginationBlockNode.append(inputPageNum)
+    paginationBlockNode.append(countOfPagesNode)
+    paginationBlockNode.append(nextPageBtnNode)
 
+    paginationBlockNode.addEventListener('click', onPaginationUsed)
 
-    paginationBlock.addEventListener('click', onPaginationUsed)
-
-    return paginationBlock
+    return paginationBlockNode
 }
