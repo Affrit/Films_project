@@ -7,9 +7,9 @@ export const createLogin = () => {
     const fieldset = createElement('fieldset', 'class', 'form__fieldset')
     const formTitle = createElement('legend', 'class', 'form__title')
     formTitle.innerText = 'Login'
-    const formBody = createElement('h2', 'class', 'form__body')
-    const formLoginWrap = createElement('h2', 'class', 'form__item')
-    const formPasswordWrap = createElement('h2', 'class', 'form__item')
+    const formBody = createElement('div', 'class', 'form__body')
+    const formLoginWrap = createElement('div', 'class', 'form__item')
+    const formPasswordWrap = createElement('div', 'class', 'form__item')
 
     const formLoginInput = createElement('input', 'class', 'form__input')
     formLoginInput.setAttribute('type', 'text')

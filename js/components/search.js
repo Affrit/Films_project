@@ -1,4 +1,5 @@
 import { createElement } from "../utils/utils.js"
+import { getFiltredFilms } from '../utils/getFiltredFilms.js'
 import { variables } from "../variables.js"
 import { showContent } from '../app.js'
 import { render } from "../routes.js"
@@ -14,24 +15,6 @@ const langList = ['English', 'Japanese', 'Spanish', 'French', 'Dutch',
 
 const perPage = [1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 16, 20, 25, 30]
 
-export const getFiltredFilms = (filtrationOptions, filmList) => {
-    const { genre, lang } = filtrationOptions
-    if (!lang && !genre) return filmList
-
-    if (lang && genre) {
-        return filmList.filter(film => {
-            return film.language === lang &&
-            film.genres.some(ganre => ganre === genre)
-        })
-    }
-    else if (lang) {
-        return filmList.filter(film => film.language === lang)
-    }
-    else if (genre) {
-        return filmList.filter(film => film.genres.some(ganre => ganre === genre))
-    }
-}
-
 const onChooseGenre = ({ target }) => {
     variables.filtrationOptions.genre = target.value
 }
@@ -46,7 +29,7 @@ const onSearch = () => {
 
     if (searchInput.value) {
         showContent(`search/shows?q=${variables.filtrationOptions.searchWord}`)
-    } else { // если инпут пустой то фильтровать загруженные все фильмы
+    } else { // если инпут пустой то фильтровать уже загруженные ранее все фильмы
         variables.filtredFilmList = getFiltredFilms(variables.filtrationOptions, variables.commonFilmList)
         render()
     }

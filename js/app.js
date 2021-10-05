@@ -1,7 +1,7 @@
 import { showError } from './utils/utils.js'
 import { variables } from './variables.js'
 import { render } from './routes.js'
-import { getFiltredFilms } from './components/search.js'
+import { getFiltredFilms } from './utils/getFiltredFilms.js'
 
 const BASE_URL = 'https://api.tvmaze.com/'
 const root = document.getElementById('root')
