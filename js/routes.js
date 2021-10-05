@@ -27,7 +27,7 @@ const getURL = () => {
     return window.location.hash.slice(1)
 }
 
-export const renderRoute = () => {
+export const render = () => {
     const route = getURL()
     clearContainer(pageWrapper)
     
@@ -65,4 +65,4 @@ export const renderRoute = () => {
     }
 }
 
-window.addEventListener('hashchange', renderRoute)
+window.addEventListener('hashchange', render)

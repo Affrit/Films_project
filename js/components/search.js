@@ -1,7 +1,7 @@
 import { createElement } from "../utils/utils.js"
 import { variables } from "../variables.js"
-import { showSearchedFilms } from '../app.js'
-import { renderRoute } from "../routes.js"
+import { showContent } from '../app.js'
+import { render } from "../routes.js"
 
 const genreList = ['Drama', 'Horror', 'Thriller', 'Science-Fiction',
     'Action', 'Crime', 'Music', 'Mystery',
@@ -14,7 +14,7 @@ const langList = ['English', 'Japanese', 'Spanish', 'French', 'Dutch',
 
 const perPage = [1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 16, 20, 25, 30]
 
-export const getfiltredFilms = (filtrationOptions, filmList) => {
+export const getFiltredFilms = (filtrationOptions, filmList) => {
     const { genre, lang } = filtrationOptions
     let filtredFilms = []
     if (!genre && !lang) return filmList
@@ -49,10 +49,10 @@ const onSearch = () => {
     variables.filtrationOptions.searchWord = searchInput.value
 
     if (searchInput.value) {
-        showSearchedFilms()
+        showContent(`search/shows?q=${variables.filtrationOptions.searchWord}`)
     } else { // если инпут пустой то фильтровать загруженные все фильмы
-        variables.filtredFilmList = getfiltredFilms(variables.filtrationOptions, variables.commonFilmList)
-        renderRoute()
+        variables.filtredFilmList = getFiltredFilms(variables.filtrationOptions, variables.commonFilmList)
+        render()
     }
 }
 
@@ -64,7 +64,7 @@ const onEnter = (e) => {
 
 const onChangeElemPerPage = ({ target }) => {
     variables.maxCountOnPage = +target.value
-    renderRoute()
+    render()
 }
 
 const spawnSelectNode = (optionsList, optionsName) => {

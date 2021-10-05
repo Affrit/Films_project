@@ -11,7 +11,7 @@ const onInputPage = ({ target }) => {
     if (pageNum < 0 || pageNum > 98 || isNaN(pageNum)) return
 
     variables.currentPage = pageNum
-    showContent()
+    showContent(`shows?page=${variables.currentPage}`)
 }
 
 const onPaginationUsed = ({ target }) => {
@@ -23,12 +23,12 @@ const onPaginationUsed = ({ target }) => {
     } else if (target.id === 'nextPageBtn') {
         if (variables.currentPage >= 98) return
         variables.currentPage += 1
-        showContent()
+        showContent(`shows?page=${variables.currentPage}`)
         
     } else if (target.id === 'previousPage') {
         if (variables.currentPage <= 0) return
         variables.currentPage -= 1
-        showContent()
+        showContent(`shows?page=${variables.currentPage}`)
     }
 }
 

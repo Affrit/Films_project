@@ -1,15 +1,12 @@
 import { showError } from './utils/utils.js'
 import { variables } from './variables.js'
-import { renderRoute } from './routes.js'
-import { getfiltredFilms } from './components/search.js'
+import { render } from './routes.js'
+import { getFiltredFilms } from './components/search.js'
 
 const BASE_URL = 'https://api.tvmaze.com/'
-
 const root = document.getElementById('root')
 
-async function getDataFromServer(baseUrl, endPoint) {
-    const apiUrl = baseUrl + endPoint
-    
+async function getDataFromServer(apiUrl) {
     try {
         const dataFromServer = await fetch(apiUrl)
         const response = await dataFromServer.json()
@@ -25,48 +22,34 @@ async function getDataFromServer(baseUrl, endPoint) {
     }
 }
 
-export async function showContent() {
-    const qweryParamPage = `?page=${variables.currentPage}`
-    const SHOWS_ENDPOINT = `shows${qweryParamPage}`
+export async function showContent(endpoint) {
+    const apiUrl = BASE_URL + endpoint
     try {
-        const response = await getDataFromServer(BASE_URL, SHOWS_ENDPOINT)
-        if (!response || response.length === 0) {
-            throw new Error('Bad response from server')
-        }
-        variables.commonFilmList = [...response]
-        variables.filtredFilmList = [...variables.commonFilmList]
-        renderRoute()
-    } catch (error) {
-        console.warn(error)
-        showError(error, root)
-    }
-}
-
-showContent()
-
-export async function showSearchedFilms() {
-    const searchWord = variables.filtrationOptions.searchWord
-    const SEARCH_ENDPOINT = `search/shows?q=${searchWord}`
-
-    try {
-        const response = await getDataFromServer(BASE_URL, SEARCH_ENDPOINT)
+        const response = await getDataFromServer(apiUrl)
         if (!response) {
             throw new Error('Bad response from server')
         }
+    
+        if (response.length > 10) {
+            variables.commonFilmList = [...response]
+            variables.filtredFilmList = [...variables.commonFilmList]
+        } else {
+            const foundFilms = response.reduce((acc, item) => {
+                return [...acc, item.show]
+            }, [])
+    
+            variables.filtredFilmList = [...foundFilms]
+            variables.filtredFilmList = getFiltredFilms(variables.filtrationOptions, variables.filtredFilmList)
+        }
 
-        const foundFilms = response.reduce((acc, item) => {
-            return [...acc, item.show]
-        }, [])
-
-        variables.filtredFilmList = [...foundFilms]
-        variables.filtredFilmList = getfiltredFilms(variables.filtrationOptions, variables.filtredFilmList)
-
-        renderRoute()
+        render()
     } catch (error) {
         console.warn(error)
         showError(error, root)
     }
 }
+
+showContent(`shows?page=${variables.currentPage}`)
 
 export const onFilmLikeBtnPushed = (event) => {
     if (event.target.nodeName === 'A') {
@@ -80,7 +63,7 @@ export const onFilmLikeBtnPushed = (event) => {
             const likedFilm = variables.filmsOnPageNow.find(film => film.id === filmId)
             newFavoriteFilmList = [...variables.favoriteFilmList, likedFilm]
         }
-        
+
         const newFavoriteFilmListJson = JSON.stringify(newFavoriteFilmList)
         localStorage.setItem('favoriteFilms', newFavoriteFilmListJson)
         variables.favoriteFilmList = newFavoriteFilmList
