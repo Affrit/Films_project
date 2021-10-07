@@ -1,6 +1,6 @@
 import { createElement } from '../utils/utils.js'
 import { variables } from '../variables.js'
-import { spawnFilms } from "../utils/spawnFilms.js"
+import { spawnFilms } from '../utils/spawnFilms.js'
 
 const onLoadMore = () => {
     const filmsContainer = document.getElementById('filmsContainer')
@@ -8,12 +8,12 @@ const onLoadMore = () => {
 }
 
 export const createLoadMore = () => {
-    const btnWrap = createElement('div', 'class', 'btn-wrap')
-    const loadMoreBtn = createElement('button', 'class', 'more-btn')
-    loadMoreBtn.innerText = 'Load More'
-    btnWrap.append(loadMoreBtn)
+    const btnWrapNode = createElement('div', 'class', 'btn-wrap')
+    const loadMoreBtnNode = createElement('button', 'class', 'more-btn')
+    loadMoreBtnNode.innerText = 'Load More'
+    btnWrapNode.append(loadMoreBtnNode)
 
-    loadMoreBtn.addEventListener('click', onLoadMore)
+    loadMoreBtnNode.addEventListener('click', onLoadMore)
 
-    return btnWrap
+    return btnWrapNode
 }

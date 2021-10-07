@@ -1,4 +1,4 @@
-import { createElement } from "../utils/utils.js"
+import { createElement } from '../utils/utils.js'
 
 const onCloseBtnClicked = () => {
     const filmModal = document.getElementById('filmModal')
@@ -12,7 +12,7 @@ const onOutOfWinClicked = ({ target }) => {
     }
 }
 
-export const spawnFilmModalWindow = (item) => {
+export const createFilmModalWindow = (item) => {
     
     const imgUrl = item.image.medium || '#'
     const name = item.name
@@ -22,50 +22,50 @@ export const spawnFilmModalWindow = (item) => {
     const summary = item.summary
     const rating = item.rating.average
 
-    const filmModalWrap = createElement('div', 'class', 'filmModal-wrap_hide')
-    const filmModal = createElement('div', 'class', 'filmModal')
-    filmModalWrap.setAttribute('id', 'filmModal')
-    const visual = createElement('div', 'class', 'filmModal__visual')
-    const visualImg = createElement('img', 'class', 'filmModal__img')
-    visualImg.setAttribute('src', imgUrl)
-    visual.append(visualImg)
+    const filmModalWrapNode = createElement('div', 'class', 'filmModal-wrap_hide')
+    const filmModalNode = createElement('div', 'class', 'filmModal')
+    filmModalWrapNode.setAttribute('id', 'filmModal')
+    const visualNode = createElement('div', 'class', 'filmModal__visual')
+    const visualImgNode = createElement('img', 'class', 'filmModal__img')
+    visualImgNode.setAttribute('src', imgUrl)
+    visualNode.append(visualImgNode)
 
-    const info = createElement('div', 'class', 'filmModal__body')
+    const infoNode = createElement('div', 'class', 'filmModal__body')
 
-    const filmName = createElement('span', 'class', 'filmModal__name')
-    filmName.innerText = name
-    const filmGenre = createElement('span', 'class', 'filmModal__info')
-    filmGenre.innerText = `genre: ${genre}`
-    const filmlang = createElement('span', 'class', 'filmModal__info')
-    filmlang.innerText = `lang: ${lang}`
-    const filmAge = createElement('span', 'class', 'filmModal__info')
-    filmAge.innerText = `age: ${age}`
-    const filmSummary = createElement('div', 'class', 'filmModal__summary')
-    filmSummary.innerHTML = summary
-    const filmRating = createElement('span', 'class', 'filmModal__info')
-    filmRating.innerText = `rating: ${rating}`
+    const filmNameNode = createElement('span', 'class', 'filmModal__name')
+    filmNameNode.innerText = name
+    const filmGenreNode = createElement('span', 'class', 'filmModal__info')
+    filmGenreNode.innerText = `genre: ${genre}`
+    const filmlangNode = createElement('span', 'class', 'filmModal__info')
+    filmlangNode.innerText = `lang: ${lang}`
+    const filmAgeNode = createElement('span', 'class', 'filmModal__info')
+    filmAgeNode.innerText = `age: ${age}`
+    const filmSummaryNode = createElement('div', 'class', 'filmModal__summary')
+    filmSummaryNode.innerHTML = summary
+    const filmRatingNode = createElement('span', 'class', 'filmModal__info')
+    filmRatingNode.innerText = `rating: ${rating}`
 
-    const closeBtn = createElement('button', 'class', 'filmModal__closeBtn')
-    closeBtn.setAttribute('id', 'closeBtn')
-    closeBtn.addEventListener('click', onCloseBtnClicked)
+    const closeBtnNode = createElement('button', 'class', 'filmModal__closeBtn')
+    closeBtnNode.setAttribute('id', 'closeBtn')
+    closeBtnNode.addEventListener('click', onCloseBtnClicked)
 
-    info.append(closeBtn)
-    info.append(filmName)
-    info.append(filmGenre)
-    info.append(filmlang)
-    info.append(filmAge)
-    info.append(filmSummary)
-    info.append(filmRating)
+    infoNode.append(closeBtnNode)
+    infoNode.append(filmNameNode)
+    infoNode.append(filmGenreNode)
+    infoNode.append(filmlangNode)
+    infoNode.append(filmAgeNode)
+    infoNode.append(filmSummaryNode)
+    infoNode.append(filmRatingNode)
 
-    filmModal.append(visual)
-    filmModal.append(info)
-    filmModalWrap.append(filmModal)
+    filmModalNode.append(visualNode)
+    filmModalNode.append(infoNode)
+    filmModalWrapNode.append(filmModalNode)
 
-    filmModalWrap.addEventListener('click', onOutOfWinClicked)
+    filmModalWrapNode.addEventListener('click', onOutOfWinClicked)
 
     setTimeout(() => {
-        filmModalWrap.setAttribute('class', 'filmModal-wrap_show')
+        filmModalWrapNode.setAttribute('class', 'filmModal-wrap_show')
     })
 
-    return filmModalWrap
+    return filmModalWrapNode
 }

@@ -39,5 +39,7 @@ body {
 }
 
 .error {
+    display: block;
+    padding: 10px;
     color: $red;
 }

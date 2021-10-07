@@ -1,11 +1,11 @@
-import { createElement } from "../utils/utils.js"
-import { createHeader } from "../components/header.js"
+import { createElement } from '../utils/utils.js'
+import { createHeader } from '../components/header.js'
 
 const createAbout = () => {
-    const about = createElement('span', 'class', 'about')
-    about.innerText = 'About page will be here'
+    const aboutNode = createElement('span', 'class', 'about')
+    aboutNode.innerText = 'About page will be here'
 
-    return about
+    return aboutNode
 }
 
 export const renderAboutPage = (targetNode) => {

@@ -1,5 +1,5 @@
-import { variables } from "../variables.js"
-import { createElement } from "./utils.js"
+import { variables } from '../variables.js'
+import { createElement } from './utils.js'
 
 const createFilmNode = (filmOptions) => {
     const { filmId, filmName, filmImgUrl } = filmOptions
@@ -33,7 +33,7 @@ export const spawnFilms = (filmList, targetBlock, maxCount) => {
         if (!filmItem) break // if user want to display more films than filmList includes
 
         const filmOptions = {
-            filmImgUrl: filmItem.image?.medium || '../img/NoImage.png',
+            filmImgUrl: filmItem.image?.medium || '../img/placehold.png',
             filmName: filmItem.name || 'Name not found',
             filmId: filmItem.id, // id from server
         }

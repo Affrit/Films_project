@@ -1,17 +1,18 @@
-import { createElement } from "../utils/utils.js"
-import { onFilmLikeBtnPushed } from '../app.js'
-import { variables } from "../variables.js"
-import { spawnFilms } from "../utils/spawnFilms.js"
-import { createHeader } from "../components/header.js"
+import { createElement } from '../utils/utils.js'
+import { onFilmLikeBtnPushed, onFilmPushed } from './filmsPage.js'
+import { variables } from '../variables.js'
+import { spawnFilms } from '../utils/spawnFilms.js'
+import { createHeader } from '../components/header.js'
 
 const createFavorite = () => {
-    const filmsContainer = createElement('div', 'class', `films`)
-    filmsContainer.setAttribute('id', 'filmsContainer')
-    spawnFilms(variables.favoriteFilmList, filmsContainer, variables.maxCountOnPage)
+    const filmsContainerNode = createElement('div', 'class', 'films')
+    filmsContainerNode.setAttribute('id', 'filmsContainer')
+    spawnFilms(variables.favoriteFilmList, filmsContainerNode, variables.maxCountOnPage)
 
-    filmsContainer.addEventListener('click', onFilmLikeBtnPushed)
+    filmsContainerNode.addEventListener('click', onFilmLikeBtnPushed)
+    filmsContainerNode.addEventListener('click', onFilmPushed)
 
-    return filmsContainer
+    return filmsContainerNode
 }
 
 export const renderFavoritePage = (targetNode) => {

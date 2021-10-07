@@ -1,10 +1,8 @@
+import { BASE_URL, DEFAULT_ENDPOINT, ROOT_NODE } from './constants.js'
 import { showError } from './utils/utils.js'
 import { variables } from './variables.js'
 import { render } from './routes.js'
 import { getFiltredFilms } from './utils/getFiltredFilms.js'
-
-const BASE_URL = 'https://api.tvmaze.com/'
-const root = document.getElementById('root')
 
 async function getDataFromServer(apiUrl) {
     try {
@@ -18,7 +16,7 @@ async function getDataFromServer(apiUrl) {
 
     } catch (error) {
         console.warn(error)
-        showError(error, root)
+        showError(error, ROOT_NODE)
     }
 }
 
@@ -44,33 +42,8 @@ export async function showContent(endpoint) {
         render()
     } catch (error) {
         console.warn(error)
-        showError(error, root)
+        showError(error, ROOT_NODE)
     }
 }
 
-showContent(`shows?page=0`)
-
-export const onFilmLikeBtnPushed = (event) => {
-    if (event.target.nodeName === 'A') {
-        const filmId = +event.path[2].id
-        let newFavoriteFilmList = [...variables.favoriteFilmList]
-        const idInArray = variables.favoriteFilmList.findIndex(film => film.id === filmId) // есть ли уже
-
-        if (idInArray !== -1) {
-            newFavoriteFilmList.splice(idInArray, 1)
-        } else {
-            const likedFilm = variables.filmsOnPageNow.find(film => film.id === filmId)
-            newFavoriteFilmList = [...variables.favoriteFilmList, likedFilm]
-        }
-
-        const newFavoriteFilmListJson = JSON.stringify(newFavoriteFilmList)
-        localStorage.setItem('favoriteFilms', newFavoriteFilmListJson)
-        variables.favoriteFilmList = newFavoriteFilmList
-
-        if (event.target.className === 'film__like') {
-            event.target.setAttribute('class', 'film__liked')
-        } else {
-            event.target.setAttribute('class', 'film__like')
-        }
-    }
-}
+showContent(DEFAULT_ENDPOINT) // first load

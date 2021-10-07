@@ -402,6 +402,8 @@ body {
 }
 
 .error {
+  display: block;
+  padding: 10px;
   color: #ff0000;
 }
 

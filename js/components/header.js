@@ -1,23 +1,23 @@
-import { createElement } from "../utils/utils.js"
+import { createElement } from '../utils/utils.js'
 
 const refsArray = ['About', 'Films', 'Favorite', 'Contacts']
 
 const createMenu = (refsArr) => {
-    const menuWrap = createElement('nav', 'class', 'menu-wrap')
-    const menu = createElement('ul', 'class', 'menu')
+    const menuWrapNode = createElement('nav', 'class', 'menu-wrap')
+    const menuNode = createElement('ul', 'class', 'menu')
 
     for (const ref of refsArr) {
-        const menuItem = createElement('li', 'class', 'menu__item')
-        const itemRef = createElement('a', 'class', 'menu__btn')
-        itemRef.setAttribute('href', `#${ref.toLowerCase()}`)
-        itemRef.innerText = ref
-        menuItem.append(itemRef)
-        menu.append(menuItem)
+        const menuItemNode = createElement('li', 'class', 'menu__item')
+        const itemRefNode = createElement('a', 'class', 'menu__btn')
+        itemRefNode.setAttribute('href', `#${ref.toLowerCase()}`)
+        itemRefNode.innerText = ref
+        menuItemNode.append(itemRefNode)
+        menuNode.append(menuItemNode)
     }
 
-    menuWrap.append(menu)
+    menuWrapNode.append(menuNode)
 
-    return menuWrap
+    return menuWrapNode
 }
 
 const onLogOut = () => {
@@ -30,41 +30,41 @@ const onLogIn = () => {
 }
 
 export const createHeader = () => {
-    const header = createElement('header', 'class', 'header')
-    header.setAttribute('id', 'header')
-    const container = createElement('div', 'class', 'container')
+    const headerNode = createElement('header', 'class', 'header')
+    headerNode.setAttribute('id', 'header')
+    const containerNode = createElement('div', 'class', 'container')
     const menu = createMenu(refsArray)
-    container.append(menu)
-    const user = createElement('div', 'class', 'user')
-    user.setAttribute('id', 'user')
+    containerNode.append(menu)
+    const userNode = createElement('div', 'class', 'user')
+    userNode.setAttribute('id', 'user')
 
     const userData = localStorage.getItem('currentUser')
     const currentUser = JSON.parse(userData) // or null
 
     if (currentUser) {
-        const userName = createElement('span', 'class', 'user__name')
-        userName.setAttribute('id', 'userName')
-        const logOut = createElement('button', 'class', 'user__btn')
-        logOut.innerText = 'LogOut'
-        userName.innerText = currentUser
+        const userNameNode = createElement('span', 'class', 'user__name')
+        userNameNode.setAttribute('id', 'userName')
+        const logOutNode = createElement('button', 'class', 'user__btn')
+        logOutNode.innerText = 'LogOut'
+        userNameNode.innerText = currentUser
 
-        user.append(userName)
-        user.append(logOut)
+        userNode.append(userNameNode)
+        userNode.append(logOutNode)
 
-        logOut.addEventListener('click', onLogOut)
+        logOutNode.addEventListener('click', onLogOut)
     } else {
-        const logIn = createElement('button', 'class', 'user__btn')
-        logIn.innerText = 'LogIn'
+        const loginBtnNode = createElement('button', 'class', 'user__btn')
+        loginBtnNode.innerText = 'LogIn'
 
-        user.append(logIn)
+        userNode.append(loginBtnNode)
 
-        logIn.addEventListener('click', onLogIn)
+        loginBtnNode.addEventListener('click', onLogIn)
     }
 
-    container.append(user)
-    header.append(container)
+    containerNode.append(userNode)
+    headerNode.append(containerNode)
 
-    return header
+    return headerNode
 }
 
 export const renderHeader = (targetBlock) => {

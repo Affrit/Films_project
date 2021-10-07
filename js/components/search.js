@@ -1,8 +1,8 @@
-import { createElement } from "../utils/utils.js"
+import { createElement } from '../utils/utils.js'
 import { getFiltredFilms } from '../utils/getFiltredFilms.js'
-import { variables } from "../variables.js"
+import { variables } from '../variables.js'
 import { showContent } from '../app.js'
-import { render } from "../routes.js"
+import { render } from '../routes.js'
 
 const genreList = ['Drama', 'Horror', 'Thriller', 'Science-Fiction',
     'Action', 'Crime', 'Music', 'Mystery',
@@ -29,7 +29,7 @@ const onSearch = () => {
 
     if (searchInput.value) {
         showContent(`search/shows?q=${variables.filtrationOptions.searchWord}`)
-    } else { // если инпут пустой то фильтровать уже загруженные ранее все фильмы
+    } else { // if input is empty, filter films that have already been loaded
         variables.filtredFilmList = getFiltredFilms(variables.filtrationOptions, variables.commonFilmList)
         render()
     }

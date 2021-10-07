@@ -1,5 +1,5 @@
-import { createElement } from "../utils/utils.js"
-import { showContent } from "../app.js"
+import { createElement } from '../utils/utils.js'
+import { showContent } from '../app.js'
 
 let currentPage = 0
 

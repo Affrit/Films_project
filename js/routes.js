@@ -1,3 +1,4 @@
+import { ROOT_NODE } from './constants.js'
 import { clearContainer } from './utils/utils.js'
 import { renderFavoritePage } from './pages/favoritePage.js'
 import { renderFilmsPage } from './pages/filmsPage.js'
@@ -5,8 +6,6 @@ import { renderAboutPage } from './pages/aboutPage.js'
 import { renderContactsPage } from './pages/contactsPage.js'
 import { renderPage404 } from './pages/page404.js'
 import { renderLoginPage } from './pages/loginPage.js'
-
-const pageWrapper = document.getElementById('root')
 
 const routes = {
     DEFAULT: '',
@@ -17,7 +16,7 @@ const routes = {
     CONTACTS: 'contacts'
 }
 
-// user will be redirect to loginPage, if it didn't logged in
+// user will be redirect to loginPage, if it didn't log in
 const isUserAuth = () => {
     if (localStorage.getItem('currentUser')) return
     window.location.replace('/#login')
@@ -29,7 +28,7 @@ const getURL = () => {
 
 export const render = () => {
     const route = getURL()
-    clearContainer(pageWrapper)
+    clearContainer(ROOT_NODE)
     
     switch (route) {
         case routes.DEFAULT:
@@ -37,29 +36,29 @@ export const render = () => {
             break
 
         case routes.LOGIN:
-            renderLoginPage(pageWrapper)
+            renderLoginPage(ROOT_NODE)
             break
 
         case routes.FILMS:
             isUserAuth()
-            renderFilmsPage(pageWrapper)
+            renderFilmsPage(ROOT_NODE)
             break
 
         case routes.FAVORITE:
             isUserAuth()
-            renderFavoritePage(pageWrapper)
+            renderFavoritePage(ROOT_NODE)
             break
 
         case routes.ABOUT:
-            renderAboutPage(pageWrapper)
+            renderAboutPage(ROOT_NODE)
             break
 
         case routes.CONTACTS:
-            renderContactsPage(pageWrapper)
+            renderContactsPage(ROOT_NODE)
             break
 
         default:
-            renderPage404(pageWrapper)
+            renderPage404(ROOT_NODE)
             break
     }
 }

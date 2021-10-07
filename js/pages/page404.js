@@ -1,11 +1,11 @@
-import { createElement } from "../utils/utils.js"
-import { createHeader } from "../components/header.js"
+import { createElement } from '../utils/utils.js'
+import { createHeader } from '../components/header.js'
 
 const createPage404 = () => {
-    const message404 = createElement('span', 'class', 'message')
-    message404.innerText = 'Error 404 Page is not found'
+    const message404Node = createElement('span', 'class', 'message')
+    message404Node.innerText = 'Error 404 Page is not found'
 
-    return message404
+    return message404Node
 }
 
 export const renderPage404 = (targetNode) => {
