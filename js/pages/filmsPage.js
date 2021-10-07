@@ -1,4 +1,4 @@
-import { createElement } from '../utils/utils.js'
+import { createElement, clearContainer } from '../utils/utils.js'
 import { variables } from '../variables.js'
 import { spawnFilms } from '../utils/spawnFilms.js'
 import { createFilmModalWindow } from '../modalWindows/filmModalWindow.js'
@@ -7,23 +7,18 @@ import { createHeader } from '../components/header.js'
 import { createLoadMore } from '../components/loadMore.js'
 import { createCountOfFilms } from "../components/countOfFilms.js"
 import { createSearch } from '../components/search.js'
-
-const modal = document.getElementById('modal')
+import { MODAL_NODE } from '../constants.js'
 
 export const onFilmPushed = (event) => {
     if (event.target.nodeName === 'A') return
     if (event.target.id === 'filmsContainer') return
-
-    const oldFilmModal = document.getElementById('filmModal')
-    if (oldFilmModal) {
-        oldFilmModal.remove()
-    }
+    clearContainer(MODAL_NODE)
     
-    const filmId = +event.path[1].id || +event.path[0].id 
+    const filmId = +event.path[0].id || +event.path[1].id 
     const pushedFilm = variables.filmsOnPageNow.find(film => film.id === filmId)
     const filmModal = createFilmModalWindow(pushedFilm)
     filmModal.style.transformOrigin = `${event.x}px ${event.y}px`
-    modal.append(filmModal)
+    MODAL_NODE.append(filmModal)
 }
 
 export const onFilmLikeBtnPushed = (event) => {
