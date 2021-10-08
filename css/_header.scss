@@ -46,9 +46,19 @@
 .menu {
     @extend %listreset;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 50%;
+
+    @media (min-width: 576px) {
+        width: 100%;
+    }
 
     &__item {
-        padding: 10px;
+        @media (min-width: 576px) {
+            font-size: inherit;
+            padding: 10px;
+        }
     }
 
     &__btn {
@@ -60,4 +70,14 @@
             color: $active_color;
         }
     }
+}
+
+.logo-wrap {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 85px;
+    position: absolute;
+    top: 0;
+    left: 0;
 }

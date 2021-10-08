@@ -1,5 +1,9 @@
 .search {
-    padding: 30px 100px 15px 100px;
+    padding: 20px 10px 10px 10px;
+
+    @media (min-width: 768px) {
+        padding: 30px 100px 15px 100px;
+    }
 
     &__inner {
         margin-bottom: 20px;
@@ -11,20 +15,28 @@
     }
 
     &__input {
-        padding: 20px;
+        padding: 10px;
         border-radius: ($base_radius * 2) 0 0 ($base_radius * 2);
         background: $main_color;
         width: 70%;
         border: none;
+
+        @media (min-width: 576px) {
+            padding: 20px;
+        }
     }
 
     &__btn {
         @extend %btnCommon;
         border-radius: 0 ($base_radius * 2) ($base_radius * 2) 0;
-        padding: 20px;
+        padding: 10px;
         background: $main_color;
         width: 30%;
         position: relative;
+
+        @media (min-width: 576px) {
+            padding: 20px;
+        }
 
         &:hover {
             color: $active_color;
@@ -43,18 +55,41 @@
     }
 
     &__params {
-        margin-left: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        @media (min-width: 576px) {
+           flex-wrap: nowrap;
+        }
     }
 
     &__select {
         border-radius: $base_radius * 2;
         background: $main_color;
-        margin-left: 10px;
-        padding: 10px;
-        padding-right: 50px;
+        padding: 5px;
+        margin: 5px;
         border: none;
         cursor: pointer;
         transition: all 0.5s;
+        width: 100%;
+
+        @media (min-width: 420px) {
+            width: 45%;
+        }
+
+        @media (min-width: 576px) {
+            width: 30%;
+        }
+
+        @media (min-width: 992px) {
+            padding: 10px;
+            width: 25%;
+        }
+
+        @media (min-width: 1200px) {
+            width: 20%;
+        }
 
         &:hover {
             color: $active_color;

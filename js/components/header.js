@@ -20,6 +20,16 @@ const createMenu = (refsArr) => {
     return menuWrapNode
 }
 
+const createLogo = () => {
+    const logoWrapNode = createElement('div', 'class', 'logo-wrap')
+    const refNode = createElement('a', 'href', '#')
+    const logoImgNode = createElement('img', 'src', '../../img/logo.png')
+    refNode.append(logoImgNode)
+    logoWrapNode.append(refNode)
+
+    return logoWrapNode
+}
+
 const onLogOut = () => {
     localStorage.removeItem('currentUser')
     window.location.replace('/#login')
@@ -33,6 +43,8 @@ export const createHeader = () => {
     const headerNode = createElement('header', 'class', 'header')
     headerNode.setAttribute('id', 'header')
     const containerNode = createElement('div', 'class', 'container')
+    const logo = createLogo()
+    containerNode.append(logo)
     const menu = createMenu(refsArray)
     containerNode.append(menu)
     const userNode = createElement('div', 'class', 'user')
@@ -65,9 +77,4 @@ export const createHeader = () => {
     headerNode.append(containerNode)
 
     return headerNode
-}
-
-export const renderHeader = (targetBlock) => {
-    const header = createHeader()
-    targetBlock.prepend(header)
 }
