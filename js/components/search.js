@@ -46,9 +46,9 @@ const onChangeElemPerPage = ({ target }) => {
     render()
 }
 
-const createSelectNode = (optionsList, optionsName) => {
+const createSelectNode = (optionsList, optionsName, defValue = '') => {
     const selectNode = createElement('select', 'class', 'search__select')
-    const defaultOptionNode = createElement('option', 'value', '')
+    const defaultOptionNode = createElement('option', 'value', defValue)
     defaultOptionNode.innerText = optionsName
     selectNode.append(defaultOptionNode)
 
@@ -91,7 +91,7 @@ export const createSearch = () => {
     const searchLangNode = createSelectNode(langList, 'All lang')
     savedOptions(searchLangNode, variables.filtrationOptions.lang)
 
-    const elemPerPageNode = createSelectNode(perPage, 'Per Page')
+    const elemPerPageNode = createSelectNode(perPage, 'Per Page', 10)
     elemPerPageNode.setAttribute('id', 'elemPerPage')
     savedOptions(elemPerPageNode, `Per page ${variables.maxCountOnPage}`)
 
