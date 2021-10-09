@@ -536,7 +536,13 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 100px 0;
+  padding: 30px 0;
+}
+
+@media (min-width: 576px) {
+  .login-wrap {
+    padding: 100px 0;
+  }
 }
 
 .form {
@@ -563,17 +569,28 @@ body {
 .form__input {
   border-radius: 20px;
   border: black 1px solid;
-  font-size: 30px;
+  font-size: 15px;
   padding: 10px;
+}
+
+@media (min-width: 576px) {
+  .form__input {
+    font-size: 30px;
+  }
 }
 
 .form__btn {
   margin-top: 15px;
   border-radius: 40px;
-  padding: 20px;
   background: #DCDCDC;
   width: 30%;
   position: relative;
+}
+
+@media (min-width: 576px) {
+  .form__btn {
+    padding: 20px;
+  }
 }
 
 .form__btn:hover {

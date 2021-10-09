@@ -2,7 +2,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 100px 0; // temp
+    padding: 30px 0;
+
+    @media (min-width: 576px) {
+        padding: 100px 0;
+    }
 }
 
 .form {
@@ -26,18 +30,25 @@
     &__input {
         border-radius: $base_radius;
         border: black 1px solid;
-        font-size: 30px;
+        font-size: 15px;
         padding: 10px;
+
+        @media (min-width: 576px) {
+            font-size: 30px;
+        }
     }
 
     &__btn {
         @extend %btnCommon;
         margin-top: 15px;
         border-radius: ($base_radius * 2);
-        padding: 20px;
         background: $main_color;
         width: 30%;
         position: relative;
+
+        @media (min-width: 576px) {
+            padding: 20px;
+        }
 
         &:hover {
             color: $active_color;
