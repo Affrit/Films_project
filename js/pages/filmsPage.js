@@ -25,7 +25,7 @@ export const onFilmLikeBtnPushed = (event) => {
     if (event.target.nodeName === 'A') {
         const filmId = +event.path[2].id
         let newFavoriteFilmList = [...variables.favoriteFilmList]
-        const idInArray = variables.favoriteFilmList.findIndex(film => film.id === filmId) // есть ли уже
+        const idInArray = variables.favoriteFilmList.findIndex(film => film.id === filmId)
 
         if (idInArray !== -1) {
             newFavoriteFilmList.splice(idInArray, 1)
@@ -46,10 +46,10 @@ export const onFilmLikeBtnPushed = (event) => {
     }
 }
 
-const createFilms = () => {
+export const createFilmsBlock = (filmList) => {
     const filmsContainerNode = createElement('div', 'class', 'films')
     filmsContainerNode.setAttribute('id', 'filmsContainer')
-    spawnFilms(variables.filtredFilmList, filmsContainerNode, variables.maxCountOnPage)
+    spawnFilms(filmList, filmsContainerNode, variables.maxCountOnPage)
 
     filmsContainerNode.addEventListener('click', onFilmLikeBtnPushed)
     filmsContainerNode.addEventListener('click', onFilmPushed)
@@ -64,14 +64,15 @@ export const renderFilmsPage = (targetNode) => {
     const header = createHeader()
     const search = createSearch()
     const countOfFilms = createCountOfFilms()
-    const films = createFilms()
-    const loadMore = createLoadMore()
+    const loadMore = createLoadMore(variables.filtredFilmList)
 
     targetNode.append(header)
     targetNode.append(search)
     targetNode.append(countOfFilms)
-    targetNode.append(films)
     targetNode.append(loadMore)
+
+    const films = createFilmsBlock(variables.filtredFilmList)
+    loadMore.before(films)
 
     if (!variables.filtrationOptions.searchWord) { // The pagintion isn't show if serch used
         const pagination = createPagination()

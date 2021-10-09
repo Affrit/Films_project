@@ -45,4 +45,10 @@ export const spawnFilms = (filmList, targetBlock, maxCount) => {
     }
 
     variables.wasSpawnedOnPage += maxCount
+
+    const showMoreNode = document.getElementById('showMore')
+
+    if (filmList.length <= maxCount || variables.wasSpawnedOnPage >= filmList.length) {
+        showMoreNode.style.display = 'none'
+    }
 }
