@@ -1,10 +1,10 @@
 import { createElement } from '../utils/utils.js'
 
-const refsArray = ['About', 'Films', 'Favorite', 'Contacts']
-
-const createMenu = (refsArr) => {
+const createMenu = () => {
     const menuWrapNode = createElement('nav', 'class', 'menu-wrap')
     const menuNode = createElement('ul', 'class', 'menu')
+
+    const refsArr = ['About', 'Films', 'Favorite', 'Contacts']
 
     for (const ref of refsArr) {
         const menuItemNode = createElement('li', 'class', 'menu__item')
@@ -39,14 +39,7 @@ const onLogIn = () => {
     window.location.replace('/#login')
 }
 
-export const createHeader = () => {
-    const headerNode = createElement('header', 'class', 'header')
-    headerNode.setAttribute('id', 'header')
-    const containerNode = createElement('div', 'class', 'container')
-    const logo = createLogo()
-    containerNode.append(logo)
-    const menu = createMenu(refsArray)
-    containerNode.append(menu)
+const createUserBlock = () => {
     const userNode = createElement('div', 'class', 'user')
     userNode.setAttribute('id', 'user')
 
@@ -73,7 +66,20 @@ export const createHeader = () => {
         loginBtnNode.addEventListener('click', onLogIn)
     }
 
-    containerNode.append(userNode)
+    return userNode
+}
+
+export const createHeader = () => {
+    const headerNode = createElement('header', 'class', 'header')
+    headerNode.setAttribute('id', 'header')
+    const containerNode = createElement('div', 'class', 'container')
+    const logoBlock = createLogo()
+    const menuBlock = createMenu()
+    const userBlock = createUserBlock()
+    
+    containerNode.append(menuBlock)
+    containerNode.append(logoBlock)
+    containerNode.append(userBlock)
     headerNode.append(containerNode)
 
     return headerNode
