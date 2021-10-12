@@ -4,7 +4,7 @@ import { createHeader } from '../components/header.js'
 import { createLoadMore } from '../components/loadMore.js'
 
 const dataFromStorage = localStorage.getItem('favoriteFilms')
-const favoriteFilmList = JSON.parse(dataFromStorage)
+const favoriteFilmList = JSON.parse(dataFromStorage) || []
 variables.favoriteFilmList = favoriteFilmList
 
 export const renderFavoritePage = (targetNode) => {
