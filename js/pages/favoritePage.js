@@ -3,6 +3,10 @@ import { variables } from '../variables.js'
 import { createHeader } from '../components/header.js'
 import { createLoadMore } from '../components/loadMore.js'
 
+const dataFromStorage = localStorage.getItem('favoriteFilms')
+const favoriteFilmList = JSON.parse(dataFromStorage)
+variables.favoriteFilmList = favoriteFilmList
+
 export const renderFavoritePage = (targetNode) => {
     variables.wasSpawnedOnPage = 0
     variables.filmsOnPageNow = []

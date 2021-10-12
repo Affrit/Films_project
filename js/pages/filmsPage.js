@@ -24,6 +24,7 @@ export const onFilmPushed = (event) => {
 export const onFilmLikeBtnPushed = (event) => {
     if (event.target.nodeName === 'A') {
         const filmId = +event.path[2].id
+
         let newFavoriteFilmList = [...variables.favoriteFilmList]
         const idInArray = variables.favoriteFilmList.findIndex(film => film.id === filmId)
 

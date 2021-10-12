@@ -8,8 +8,10 @@ export const createCountOfFilms = () => {
     const searchWord = variables.filtrationOptions.searchWord
     const countOfFilms = variables.filtredFilmList.length
 
-    if (countOfFilms === 0) {
-        countOfFilmsTextNode.innerText = `We didn't find results for: ${searchWord}.`
+    if (countOfFilms === 0 && searchWord) {
+        countOfFilmsTextNode.innerText = `We didn't find results for: ${searchWord}`
+    } else if (countOfFilms === 0 && !searchWord) {
+        countOfFilmsTextNode.innerText = `We didn't find any results`
     } else {
         countOfFilmsTextNode.innerText = `We found ${countOfFilms} films for you`
     }
