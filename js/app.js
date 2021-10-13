@@ -13,7 +13,6 @@ async function getDataFromServer(apiUrl) {
         }
 
         return response
-
     } catch (error) {
         console.warn(error)
         showError(error, ROOT_NODE)

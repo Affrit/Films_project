@@ -7,11 +7,9 @@ export const getFiltredFilms = (filtrationOptions, filmList) => {
             return film.language === lang &&
             film.genres.some(ganre => ganre === genre)
         })
-    }
-    else if (lang) {
+    } else if (lang) {
         return filmList.filter(film => film.language === lang)
-    }
-    else if (genre) {
+    } else if (genre) {
         return filmList.filter(film => film.genres.some(ganre => ganre === genre))
     }
 }

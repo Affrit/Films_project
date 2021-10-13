@@ -59,13 +59,13 @@ export const createFilmsBlock = (filmList) => {
 }
 
 export const renderFilmsPage = (targetNode) => {
-    variables.wasSpawnedOnPage = 0
-    variables.filmsOnPageNow = []
-
     const header = createHeader()
     const search = createSearch()
     const countOfFilms = createCountOfFilms()
     const loadMore = createLoadMore(variables.filtredFilmList)
+
+    variables.wasSpawnedOnPage = 0
+    variables.filmsOnPageNow = []
 
     targetNode.append(header)
     targetNode.append(search)

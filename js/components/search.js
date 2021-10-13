@@ -1,19 +1,9 @@
+import { elemPerPage, genreList, langList } from '../constants.js'
 import { createElement } from '../utils/utils.js'
 import { getFiltredFilms } from '../utils/getFiltredFilms.js'
 import { variables } from '../variables.js'
 import { showContent } from '../app.js'
 import { render } from '../routes.js'
-
-const genreList = ['Drama', 'Horror', 'Thriller', 'Science-Fiction',
-    'Action', 'Crime', 'Music', 'Mystery',
-    'Supernatural', 'Adventure', 'Family', 'Medical']
-
-const langList = ['English', 'Japanese', 'Spanish', 'French', 'Dutch',
-    'German', 'Portuguese', 'Danish', 'Swedish', 'Korean',
-    'Welsh', 'Norwegian', 'Italian', 'Russian', 'Thai',
-    'Chinese', 'Turkish', 'Hungarian', 'Ukrainian', 'Polish']
-
-const perPage = [1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 16, 20, 25, 30]
 
 const onChooseGenre = ({ target }) => {
     variables.filtrationOptions.genre = target.value
@@ -91,7 +81,7 @@ export const createSearch = () => {
     const searchLangNode = createSelectNode(langList, 'All lang')
     savedOptions(searchLangNode, variables.filtrationOptions.lang)
 
-    const elemPerPageNode = createSelectNode(perPage, 'Per Page', 10)
+    const elemPerPageNode = createSelectNode(elemPerPage, 'Per Page', 10)
     elemPerPageNode.setAttribute('id', 'elemPerPage')
     savedOptions(elemPerPageNode, `Per page ${variables.maxCountOnPage}`)
 

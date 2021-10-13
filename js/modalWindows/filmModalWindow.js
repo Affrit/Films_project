@@ -13,7 +13,6 @@ const onOutOfWinClicked = ({ target }) => {
 }
 
 export const createFilmModalWindow = (item) => {
-    
     const imgUrl = item.image.medium || '#'
     const name = item.name
     const genre = item.genres.join(', ')
@@ -65,7 +64,7 @@ export const createFilmModalWindow = (item) => {
 
     setTimeout(() => {
         filmModalWrapNode.setAttribute('class', 'filmModal-wrap_show')
-    })
+    }, 0)
 
     return filmModalWrapNode
 }
