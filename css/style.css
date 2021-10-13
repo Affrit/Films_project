@@ -1053,7 +1053,7 @@ body {
   margin-bottom: 10px;
 }
 
-.filmModal__info {
+.filmModal__genre, .filmModal__lang, .filmModal__age, .filmModal__rating {
   padding: 5px 0;
 }
 

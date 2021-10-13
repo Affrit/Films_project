@@ -1,4 +1,4 @@
-import { elemPerPage, genreList, langList } from '../constants.js'
+import { ELEM_PER_PAGE, GENRE_LIST, LANG_LIST } from '../constants.js'
 import { createElement } from '../utils/utils.js'
 import { getFiltredFilms } from '../utils/getFiltredFilms.js'
 import { variables } from '../variables.js'
@@ -75,13 +75,13 @@ export const createSearch = () => {
     search__innerNode.append(search__btnNode)
 
     const selectNode = createElement('div', 'class', 'search__params')
-    const searchGenreNode = createSelectNode(genreList, 'All genre')
+    const searchGenreNode = createSelectNode(GENRE_LIST, 'All genre')
     savedOptions(searchGenreNode, variables.filtrationOptions.genre)
 
-    const searchLangNode = createSelectNode(langList, 'All lang')
+    const searchLangNode = createSelectNode(LANG_LIST, 'All lang')
     savedOptions(searchLangNode, variables.filtrationOptions.lang)
 
-    const elemPerPageNode = createSelectNode(elemPerPage, 'Per Page', 10)
+    const elemPerPageNode = createSelectNode(ELEM_PER_PAGE, 'Per Page', 10)
     elemPerPageNode.setAttribute('id', 'elemPerPage')
     savedOptions(elemPerPageNode, `Per page ${variables.maxCountOnPage}`)
 

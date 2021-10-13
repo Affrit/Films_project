@@ -1,12 +1,11 @@
 import { createElement } from '../utils/utils.js'
+import { REFS_ARR } from '../constants.js'
 
 const createMenu = () => {
     const menuWrapNode = createElement('nav', 'class', 'menu-wrap')
     const menuNode = createElement('ul', 'class', 'menu')
 
-    const refsArr = ['About', 'Films', 'Favorite', 'Contacts']
-
-    for (const ref of refsArr) {
+    for (const ref of REFS_ARR) {
         const menuItemNode = createElement('li', 'class', 'menu__item')
         const itemRefNode = createElement('a', 'class', 'menu__btn')
         itemRefNode.setAttribute('href', `#${ref.toLowerCase()}`)
