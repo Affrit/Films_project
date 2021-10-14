@@ -889,6 +889,11 @@ body {
   background: rgba(0, 0, 0, 0.5);
 }
 
+.emty-favorite {
+  text-align: center;
+  padding: 50px 0;
+}
+
 .pagination {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -897,6 +902,19 @@ body {
       -ms-flex-pack: end;
           justify-content: flex-end;
   padding: 15px 45px;
+  position: relative;
+}
+
+.pagination__warn {
+  position: absolute;
+  top: -5px;
+  right: 45px;
+  font-size: 16px;
+  color: #a14040;
+}
+
+.pagination__warn_hide {
+  display: none;
 }
 
 .pagination__info {
@@ -949,7 +967,7 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 
 .more-btn {

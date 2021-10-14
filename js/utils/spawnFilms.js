@@ -1,6 +1,11 @@
 import { variables } from '../variables.js'
 import { createElement } from './utils.js'
 
+/*
+    params: [filmOptions: Object],
+    description: this func creates a filmNode which is based on settings from params,
+    returnType: Node
+*/
 const createFilmNode = (filmOptions) => {
     const { filmId, filmName, filmImgUrl } = filmOptions
 
@@ -27,6 +32,14 @@ const createFilmNode = (filmOptions) => {
     return filmNode
 }
 
+/*
+    params: [filmList: Array, targetBlock: Node,  maxCount: Number],
+    description: this func append to targetBlock some count of filmNode which are based on filmList,
+                 and which are created in "createFilmNode" func, the quantity filmNode depends on maxCount. 
+                 If there are no more films in the list to be shown by clicking on "showMore" btn,
+                 then it is hidden.
+    returnType: Void
+*/
 export const spawnFilms = (filmList, targetBlock, maxCount) => {
     for (let i = 0; i < maxCount; i++) {
         const filmItem = filmList[i + variables.wasSpawnedOnPage] // for show more
