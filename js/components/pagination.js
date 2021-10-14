@@ -6,15 +6,16 @@ let currentPage = 0
 const onInputPage = ({ target }) => {
     const fromPages = document.getElementById('fromPages')
     const warnMessage = document.getElementById('warnMessage')
-    target.setAttribute('class', 'pagination__input_hide')
-    fromPages.setAttribute('class', 'pagination__info')
-
     const pageNum = +target.value - 1
+
     if (pageNum < 0 || pageNum > 98 || isNaN(pageNum)) {
         target.value = ''
         warnMessage.setAttribute('class', 'pagination__warn')
         return
     }
+
+    target.setAttribute('class', 'pagination__input_hide')
+    fromPages.setAttribute('class', 'pagination__info')
 
     currentPage = pageNum
     showContent(`shows?page=${currentPage}`)

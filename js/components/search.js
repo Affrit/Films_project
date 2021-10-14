@@ -64,37 +64,35 @@ const savedOptions = (selectNode, option) => {
 export const createSearch = () => {
     const containerNode = createElement('div', 'class', 'container')
     const searchNode = createElement('div', 'class', 'search')
-    const search__innerNode = createElement('div', 'class', 'search__inner')
-    const search__inputNode = createElement('input', 'class', 'search__input')
-    search__inputNode.setAttribute('id', 'searchInput')
-    search__inputNode.setAttribute('placeholder', 'insert film name here')
-    search__inputNode.value = variables.filtrationOptions.searchWord
-    const search__btnNode = createElement('button', 'class', 'search__btn')
-    search__btnNode.innerText = 'Search'
-    search__innerNode.append(search__inputNode)
-    search__innerNode.append(search__btnNode)
-
+    const searchInnerNode = createElement('div', 'class', 'search__inner')
+    const searchInputNode = createElement('input', 'class', 'search__input')
+    const searchBtnNode = createElement('button', 'class', 'search__btn')
     const selectNode = createElement('div', 'class', 'search__params')
     const searchGenreNode = createSelectNode(GENRE_LIST, 'All genre')
-    savedOptions(searchGenreNode, variables.filtrationOptions.genre)
-
     const searchLangNode = createSelectNode(LANG_LIST, 'All lang')
-    savedOptions(searchLangNode, variables.filtrationOptions.lang)
-
     const elemPerPageNode = createSelectNode(ELEM_PER_PAGE, 'Per Page', 10)
-    elemPerPageNode.setAttribute('id', 'elemPerPage')
+
+    savedOptions(searchGenreNode, variables.filtrationOptions.genre)
+    savedOptions(searchLangNode, variables.filtrationOptions.lang)
     savedOptions(elemPerPageNode, `Per page ${variables.maxCountOnPage}`)
 
+    searchInputNode.setAttribute('id', 'searchInput')
+    searchInputNode.setAttribute('placeholder', 'insert film name here')
+    elemPerPageNode.setAttribute('id', 'elemPerPage')
+    searchBtnNode.innerText = 'Search'
+    searchInputNode.value = variables.filtrationOptions.searchWord
+
+    searchInnerNode.append(searchInputNode)
+    searchInnerNode.append(searchBtnNode)
     selectNode.append(searchGenreNode)
     selectNode.append(searchLangNode)
     selectNode.append(elemPerPageNode)
-
-    searchNode.append(search__innerNode)
+    searchNode.append(searchInnerNode)
     searchNode.append(selectNode)
     containerNode.append(searchNode)
 
-    search__inputNode.addEventListener('keydown', onEnter)
-    search__btnNode.addEventListener('click', onSearch)
+    searchInputNode.addEventListener('keydown', onEnter)
+    searchBtnNode.addEventListener('click', onSearch)
     searchGenreNode.addEventListener('change', onChooseGenre)
     searchLangNode.addEventListener('change', onChooseLang)
     elemPerPageNode.addEventListener('change', onChangeElemPerPage)

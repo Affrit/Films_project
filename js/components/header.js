@@ -8,6 +8,7 @@ const createMenu = () => {
     for (const ref of REFS_ARR) {
         const menuItemNode = createElement('li', 'class', 'menu__item')
         const itemRefNode = createElement('a', 'class', 'menu__btn')
+
         itemRefNode.setAttribute('href', `#${ref.toLowerCase()}`)
         itemRefNode.innerText = ref
         menuItemNode.append(itemRefNode)
@@ -23,6 +24,7 @@ const createLogo = () => {
     const logoWrapNode = createElement('div', 'class', 'logo-wrap')
     const refNode = createElement('a', 'href', '#')
     const logoImgNode = createElement('img', 'src', '../../img/logo.png')
+
     refNode.append(logoImgNode)
     logoWrapNode.append(refNode)
 
@@ -39,16 +41,17 @@ const onLogIn = () => {
 }
 
 const createUserBlock = () => {
-    const userNode = createElement('div', 'class', 'user')
-    userNode.setAttribute('id', 'user')
-
     const userData = localStorage.getItem('currentUser')
     const currentUser = JSON.parse(userData) // or null
+    const userNode = createElement('div', 'class', 'user')
+    
+    userNode.setAttribute('id', 'user')
 
     if (currentUser) {
         const userNameNode = createElement('span', 'class', 'user__name')
-        userNameNode.setAttribute('id', 'userName')
         const logOutNode = createElement('button', 'class', 'user__btn')
+
+        userNameNode.setAttribute('id', 'userName')
         logOutNode.innerText = 'LogOut'
         userNameNode.innerText = currentUser
 
@@ -70,11 +73,12 @@ const createUserBlock = () => {
 
 export const createHeader = () => {
     const headerNode = createElement('header', 'class', 'header')
-    headerNode.setAttribute('id', 'header')
     const containerNode = createElement('div', 'class', 'container')
     const logoBlock = createLogo()
     const menuBlock = createMenu()
     const userBlock = createUserBlock()
+
+    headerNode.setAttribute('id', 'header')
     
     containerNode.append(menuBlock)
     containerNode.append(logoBlock)
