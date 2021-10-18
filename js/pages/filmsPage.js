@@ -12,18 +12,21 @@ import { MODAL_NODE } from '../constants.js'
 export const onFilmPushed = (event) => {
     if (event.target.nodeName === 'A') return
     if (event.target.id === 'filmsContainer') return
-    clearContainer(MODAL_NODE)
-    
-    const filmId = +event.path[0].id || +event.path[1].id 
+
+    const path = event.path || (event.composedPath && event.composedPath()) // for fireFox support
+    const filmId = +path[0].id || +path[1].id
     const pushedFilm = variables.filmsOnPageNow.find(film => film.id === filmId)
     const filmModal = createFilmModalWindow(pushedFilm)
+
     filmModal.style.transformOrigin = `${event.x}px ${event.y}px`
+    clearContainer(MODAL_NODE)
     MODAL_NODE.append(filmModal)
 }
 
 export const onFilmLikeBtnPushed = (event) => {
     if (event.target.nodeName === 'A') {
-        const filmId = +event.path[2].id
+        const path = event.path || (event.composedPath && event.composedPath()) // for fireFox support
+        const filmId = +path[2].id
 
         let newFavoriteFilmList = [...variables.favoriteFilmList]
         const idInArray = variables.favoriteFilmList.findIndex(film => film.id === filmId)
