@@ -1,0 +1,17 @@
+.contacts {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+
+    &__autor {
+        padding-right: 5px;
+    }
+
+    &__ref {
+        @extend %btnCommon;
+
+        &:hover {
+            color: $active_color;
+        }
+    }
+}

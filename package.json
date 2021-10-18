@@ -1,0 +1,41 @@
+{
+  "name": "films-project",
+  "version": "1.0.0",
+  "description": "SPA on pure JS",
+  "main": "./js/index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --mode development --hot --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Affrit/Films_project.git"
+  },
+  "keywords": [
+    "SPA",
+    "JS"
+  ],
+  "author": "Affit393@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Affrit/Films_project/issues"
+  },
+  "homepage": "https://github.com/Affrit/Films_project#readme",
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/plugin-transform-runtime": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^6.4.0",
+    "mini-css-extract-plugin": "^2.4.2",
+    "node-sass": "^6.0.1",
+    "sass-loader": "^12.2.0",
+    "style-loader": "^3.3.0",
+    "webpack": "^5.58.2",
+    "webpack-cli": "^4.9.0",
+    "webpack-dev-server": "^4.3.1"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.15.4"
+  }
+}
