@@ -51,6 +51,7 @@ export const createFilmModalWindow = (item) => {
     visualNode.append(visualImgNode)
     filmModalNode.append(visualNode)
     filmModalNode.append(descriptionNode)
+    filmModalNode.append(closeBtnNode)
     filmModalWrapNode.append(filmModalNode)
 
     closeBtnNode.addEventListener('click', onCloseBtnClicked)
